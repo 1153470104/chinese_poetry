@@ -17,7 +17,7 @@ def print_dict(dict_data):
 
 
 # read file
-workbook = xlrd.open_workbook("903.xls")
+workbook = xlrd.open_workbook("907汇总及编码.xls")
 r_sheet = workbook.sheet_by_index(0)
 
 
@@ -29,8 +29,8 @@ i = 0
 while True:
     try:
         i = i + 1
-        w_sheet.write(i, 0, r_sheet.cell_value(i, 0).replace("文件\\\\", ""))
-        w_sheet.write(i, 1, r_sheet.cell_value(i, 1).replace("节点\\\\", ""))
+        # w_sheet.write(i, 0, r_sheet.cell_value(i, 0).replace("文件\\\\", ""))
+        # w_sheet.write(i, 1, r_sheet.cell_value(i, 1).replace("节点\\\\", ""))
         w_sheet.write(i, 4, r_sheet.cell_value(i, 4).replace(" ", ""))
     except IndexError:  # 用错误处理机制进行退出
         print("get to the end")
@@ -39,4 +39,4 @@ while True:
         continue
 
 # 把book对应的内容存到 一个新文件里
-book.save("903d.xls")
+book.save("908.xls")

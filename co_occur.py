@@ -24,7 +24,7 @@ def print_matrix(matrix):
 
 
 # 打开excel表格
-workbook = xlrd.open_workbook("903d.xls")
+workbook = xlrd.open_workbook("907汇总及编码.xls")
 r_sheet = workbook.sheet_by_index(0)
 
 
@@ -247,9 +247,34 @@ def excel_export_co_matrix(r_list, c_list, excel_name):
 # excel_export_co_matrix(people_list, stuff_list, "时词在哪写.xls")
 
 # test4: integrated test, 人词、物象词
-location_list = get_list_top("地点词", 50)
-excel_export_co_matrix(location_list, location_list, "地点词50.xls")
+# location_list = get_list_top("地点词", 50)
+# excel_export_co_matrix(location_list, location_list, "地点词50.xls")
 
 # test9
 # print_list(get_list_top("物象词", 20))
 
+# work, output some files
+stuff_list50 = get_list_top("物象词", 50)
+stuff_list100 = get_list_top("物象词", 100)
+location_list50 = get_list_top("地点词", 50)
+location_list100 = get_list_top("地点词", 100)
+status_list50 = get_list_top("状态词", 50)
+status_list100 = get_list_top("状态词", 100)
+time_list50 = get_list_top("时词", 50)
+time_list100 = get_list_top("时词", 100)
+people_list50 = get_list_top("人词", 50)
+people_list100 = get_list_top("人词", 100)
+
+excel_export_co_matrix(stuff_list50, stuff_list50, "output/物象物象50.xls")
+excel_export_co_matrix(location_list50, location_list50, "output/地点地点50.xls")
+excel_export_co_matrix(stuff_list50, location_list50, "output/地点物象50.xls")
+excel_export_co_matrix(time_list50, location_list50, "output/地点时间50.xls")
+excel_export_co_matrix(people_list50, location_list50, "output/地点人50.xls")
+excel_export_co_matrix(status_list50, location_list50, "output/地点状态50.xls")
+
+excel_export_co_matrix(stuff_list100, stuff_list100, "output/物象物象100.xls")
+excel_export_co_matrix(location_list100, location_list100, "output/地点地点100.xls")
+excel_export_co_matrix(stuff_list100, location_list100, "output/地点物象100.xls")
+excel_export_co_matrix(time_list100, location_list100, "output/地点时间100.xls")
+excel_export_co_matrix(people_list100, location_list100, "output/地点人100.xls")
+excel_export_co_matrix(status_list100, location_list100, "output/地点状态100.xls")

@@ -24,7 +24,7 @@ def print_matrix(matrix):
 
 
 # 打开excel表格
-workbook = xlrd.open_workbook("907汇总及编码.xls")
+workbook = xlrd.open_workbook("908deduplicate.xls")
 r_sheet = workbook.sheet_by_index(0)
 
 

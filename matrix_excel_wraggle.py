@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import xlrd
+import xlwt
 
 
 # 打印数列
@@ -62,7 +63,41 @@ def sort_excel_matrix(matrix_name):
     sort_matrix(r_list, c_list, e_matrix)
 
 
-sort_excel_matrix("时词在哪写.xls")
-# sort_excel_matrix("商山长安.xls")
+def matrix_flat(matrix_name, output_name):
+    e_matrix = get_matrix(matrix_name)
+    workbook = xlrd.open_workbook(matrix_name)
+    r_sheet = workbook.sheet_by_index(0)
+    c_list = r_sheet.row_values(0)[1:]
+    r_list = r_sheet.col_values(0)[1:]
+    r_len = len(r_list)
+    c_len = len(c_list)
+    book = xlwt.Workbook()
+    w_sheet = book.add_sheet('0')
+    i = 0
+    for r in range(r_len):
+        for c in range(c_len):
+            for k in range(int(e_matrix[r][c])):
+                w_sheet.write(i, 0, r_list[r])
+                w_sheet.write(i, 1, c_list[c])
+                i = i + 1
+    book.save(output_name)
 
 
+# sort_excel_matrix("时词在哪写.xls")
+# # sort_excel_matrix("商山长安.xls")
+
+# matrix_flat("商山长安.xls", "商山长安flat.xls")
+
+matrix_flat("output/物象物象50.xls", "output917/物象物象50flat.xls")
+matrix_flat("output/地点地点50.xls", "output917/地点地点50flat.xls")
+matrix_flat("output/地点物象50.xls", "output917/地点物象50flat.xls")
+matrix_flat("output/地点时间50.xls", "output917/地点时间50flat.xls")
+matrix_flat("output/地点人50.xls", "output917/地点人50flat.xls")
+matrix_flat("output/地点状态50.xls", "output917/地点状态50flat.xls")
+
+matrix_flat("output/物象物象100.xls", "output917/物象物象100flat.xls")
+matrix_flat("output/地点地点100.xls", "output917/地点地点100flat.xls")
+matrix_flat("output/地点物象100.xls", "output917/地点物象100flat.xls")
+matrix_flat("output/地点时间100.xls", "output917/地点时间100flat.xls")
+matrix_flat("output/地点人100.xls", "output917/地点人100flat.xls")
+matrix_flat("output/地点状态100.xls", "output917/地点状态100flat.xls")

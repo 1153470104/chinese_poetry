@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import xlrd
 import xlwt
+import csv
+import codecs
 
 
 # 打印数列
@@ -41,6 +43,24 @@ def get_matrix(matrix_name):
     return matrix
 
 
+# def get_csv_matrix(matrix_name):
+#     # 打开excel表格
+#     with codecs.open(matrix_name, 'r', encoding='gb2312') as csv_file:
+#         reader = csv.reader(csv_file)
+#         matrix = [row for row in reader]
+
+        # matrix = []
+        # i = 0
+        # print(type(reader))
+        # for row in reader:
+        #     print(type(row))
+        #     if i > 0:
+        #         matrix.append(row[1:])
+        #     i = i+1
+
+    # return matrix
+
+
 def sort_matrix(r_list, c_list, matrix):
 
     matrix_dict = {}
@@ -61,6 +81,14 @@ def sort_excel_matrix(matrix_name):
     c_list = r_sheet.row_values(0)[1:]
     r_list = r_sheet.col_values(0)[1:]
     sort_matrix(r_list, c_list, e_matrix)
+
+
+# def sort_csv_matrix(matrix_name):
+#
+#     e_matrix = get_matrix(matrix_name)
+#     c_list = r_sheet.row_values(0)[1:]
+#     r_list = r_sheet.col_values(0)[1:]
+#     sort_matrix(r_list, c_list, e_matrix)
 
 
 def matrix_flat(matrix_name, output_name):
@@ -102,3 +130,5 @@ def matrix_flat(matrix_name, output_name):
 # matrix_flat("output/地点时间100.xls", "output917/地点时间100flat.xls")
 # matrix_flat("output/地点人100.xls", "output917/地点人100flat.xls")
 # matrix_flat("output/地点状态100.xls", "output917/地点状态100flat.xls")
+
+# print_matrix(get_csv_matrix("output/物象物象5.csv"))

@@ -70,7 +70,9 @@ def sort_matrix(r_list, c_list, matrix):
         for c in range(c_len):
             matrix_dict[r_list[r] + " - " + c_list[c]] = matrix[r][c]
     sort_list = sorted(matrix_dict.items(), key=lambda x: x[1], reverse=True)
-    print_list(sort_list)
+    # print_list(sort_list)
+
+    return sort_list
 
 
 def sort_excel_matrix(matrix_name):
@@ -80,7 +82,7 @@ def sort_excel_matrix(matrix_name):
     r_sheet = workbook.sheet_by_index(0)
     c_list = r_sheet.row_values(0)[1:]
     r_list = r_sheet.col_values(0)[1:]
-    sort_matrix(r_list, c_list, e_matrix)
+    return sort_matrix(r_list, c_list, e_matrix)
 
 
 # def sort_csv_matrix(matrix_name):
@@ -112,7 +114,7 @@ def matrix_flat(matrix_name, output_name):
 
 
 # sort_excel_matrix("时词在哪写.xls")
-# # sort_excel_matrix("商山长安.xls")
+sort_excel_matrix("output/物象物象50.xls")
 
 # matrix_flat("商山长安.xls", "商山长安flat.xls")
 

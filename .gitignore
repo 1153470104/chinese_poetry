@@ -3,5 +3,10 @@
 *.rar
 output/
 output917/
+output_908/
 545convert1/
 545convert830/
+__pycache__/
+.gitignore~
+..gitignore.un~
+..gitignore.un~

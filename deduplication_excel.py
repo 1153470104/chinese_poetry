@@ -45,7 +45,7 @@ def table_to_dict(table_name):
 
 
 def deduplicate_excel(data_name, output_name):
-    du_dict = table_to_dict("verbose.xlsx")
+    du_dict = table_to_dict("地词合并表单.xlsx")
     workbook = xlrd.open_workbook(data_name)
     r_sheet = workbook.sheet_by_index(0)
 
@@ -67,4 +67,4 @@ def deduplicate_excel(data_name, output_name):
     book.save(output_name)
 
 
-deduplicate_excel("908.xls", "908deduplicate.xls")
+deduplicate_excel("908deduplicate.xls", "908deduplicate.xls")

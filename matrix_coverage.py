@@ -1,4 +1,5 @@
 import matrix_excel_wraggle
+import matplotlib.pyplot as plt
 import co_occur
 
 
@@ -49,12 +50,40 @@ def coverage(w_list1, w_list2, rank_list, symmetry):
                 if co_word in r_dict.keys():
                     occur_time = occur_time + 1
                     times_sum = times_sum + r_dict[co_word]
-        print("top " + str(len(top_list)) + " co-occur")
-        print("matrix would cover " + str(occur_time) + " times")
-        print("coverage: " + str(times_sum / total_times))
+        print("top " + str(len(top_list)) + ", ", end='')
+        print("matrix cover " + str(occur_time) + ", ", end='')
+        a = occur_time / len(top_list)
+        b = times_sum / total_times
+        print("weight coverage: " + str(b))
+        return [a, b]
 
 
-rk_list = matrix_excel_wraggle.sort_excel_matrix("时词在哪写.xls")
-c_list = co_occur.get_list_top("时词", 200)
-r_list = co_occur.get_list_top("在哪写", 100)
-coverage(c_list, r_list, rk_list, False)
+# rk_list = matrix_excel_wraggle.sort_excel_matrix("时词在哪写.xls")
+# c_list = co_occur.get_list_top("时词", 200)
+# r_list = co_occur.get_list_top("在哪写", 100)
+# coverage(c_list, r_list, rk_list, False)
+
+def file_coverage(type1, top_num1, type2, top_num2, matrix_path, symmetry):
+    rk_list = matrix_excel_wraggle.sort_excel_matrix(matrix_path)
+    c_list = co_occur.get_list_top(type1, top_num1)
+    r_list = co_occur.get_list_top(type2, top_num2)
+    return coverage(c_list, r_list, rk_list, symmetry)
+
+
+x = []
+y = []
+z = []
+for i in range(1, 25):
+    r2 = file_coverage("物象词", i * 10, "地点词", i * 10
+                       , "output_coverage/物象地点-总.xls", False)
+    x.append(i * 10)
+    y.append(r2[0])
+    z.append(r2[1])
+
+plt.figure()
+plt.plot(x, y)
+plt.title("cover percentage")
+plt.figure()
+plt.plot(x, z)
+plt.title("weight coverage")
+plt.show()

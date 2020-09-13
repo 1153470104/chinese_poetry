@@ -114,23 +114,23 @@ def matrix_flat(matrix_name, output_name):
 
 
 # sort_excel_matrix("时词在哪写.xls")
-sort_excel_matrix("output/物象物象50.xls")
-
-# matrix_flat("商山长安.xls", "商山长安flat.xls")
-
-# get the flat file of matrices
-matrix_flat("output/物象物象50.xls", "output912/物象物象50flat.xls")
-matrix_flat("output/地点地点50.xls", "output912/地点地点50flat.xls")
-matrix_flat("output/地点物象50.xls", "output912/地点物象50flat.xls")
-matrix_flat("output/地点时间50.xls", "output912/地点时间50flat.xls")
-matrix_flat("output/地点人50.xls", "output912/地点人50flat.xls")
-matrix_flat("output/地点状态50.xls", "output912/地点状态50flat.xls")
-
-matrix_flat("output/物象物象100.xls", "output912/物象物象100flat.xls")
-matrix_flat("output/地点地点100.xls", "output912/地点地点100flat.xls")
-matrix_flat("output/地点物象100.xls", "output912/地点物象100flat.xls")
-matrix_flat("output/地点时间100.xls", "output912/地点时间100flat.xls")
-matrix_flat("output/地点人100.xls", "output912/地点人100flat.xls")
-matrix_flat("output/地点状态100.xls", "output912/地点状态100flat.xls")
+# sort_excel_matrix("output/物象物象50.xls")
+#
+# # matrix_flat("商山长安.xls", "商山长安flat.xls")
+#
+# # get the flat file of matrices
+# matrix_flat("output/物象物象50.xls", "output912/物象物象50flat.xls")
+# matrix_flat("output/地点地点50.xls", "output912/地点地点50flat.xls")
+# matrix_flat("output/地点物象50.xls", "output912/地点物象50flat.xls")
+# matrix_flat("output/地点时间50.xls", "output912/地点时间50flat.xls")
+# matrix_flat("output/地点人50.xls", "output912/地点人50flat.xls")
+# matrix_flat("output/地点状态50.xls", "output912/地点状态50flat.xls")
+#
+# matrix_flat("output/物象物象100.xls", "output912/物象物象100flat.xls")
+# matrix_flat("output/地点地点100.xls", "output912/地点地点100flat.xls")
+# matrix_flat("output/地点物象100.xls", "output912/地点物象100flat.xls")
+# matrix_flat("output/地点时间100.xls", "output912/地点时间100flat.xls")
+# matrix_flat("output/地点人100.xls", "output912/地点人100flat.xls")
+# matrix_flat("output/地点状态100.xls", "output912/地点状态100flat.xls")
 
 # print_matrix(get_csv_matrix("output/物象物象5.csv"))

@@ -42,7 +42,7 @@ def get_list_top(type_txt, number):
                 else:
                     word_dict[r_sheet.cell_value(i, 4)] = 1
         except IndexError:
-            print("get to the end")
+            # print("get to the end")
             break
         else:
             continue
@@ -342,6 +342,7 @@ def excel_export_co_matrix(r_list, c_list, excel_name):
 # stuff_list50 = get_list_top("物象词", 5)
 # excel_export_co_matrix(stuff_list50, stuff_list50, "output/物象物象5.csv")
 
-stuff_list = get_list("物象词")
-location_list = get_list_top("地点词", 255)
-excel_export_co_matrix(stuff_list, location_list, "output_coverage/物象地点-总.xls")
+
+# stuff_list = get_list("物象词")
+# location_list = get_list_top("地点词", 255)
+# excel_export_co_matrix(stuff_list, location_list, "output_coverage/物象地点-总.xls")

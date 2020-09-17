@@ -82,6 +82,47 @@ def get_list(type_txt):
     return list(word_set)
 
 
+def get_dict(type_txt):
+    word_dict = {}
+    i = 0
+    while True:
+        try:
+            i = i + 1
+            if r_sheet.cell_value(i, 1) == type_txt:
+                w = r_sheet.cell_value(i, 4)
+                if w in word_dict.keys():
+                    word_dict[w] = word_dict[w] + 1
+                else:
+                    word_dict[w] = 1
+        except IndexError:
+            print("get to the end")
+            break
+        else:
+            continue
+
+    return word_dict
+
+
+def dict_to_file(t_dict, path):
+    f = open(path, 'w', encoding='utf-8')
+    for i in t_dict:
+        f.write(i + "," + str(t_dict[i]) + "\n")
+    f.close()
+
+
+def file_to_dict(path):
+    f = open(path, 'r', encoding='utf-8')
+    f_dict = {}
+    line = f.readline()
+    while line:
+        line = line.replace("\n", "")
+        f_dict[line.split(",")[0]] = line.split(",")[1]
+        line = f.readline()
+    f.close()
+    print_dict(f_dict)
+    return f_dict
+
+
 def list_co_matrix(r_list, c_list, matrix):
     """
     根据共现矩阵，排列矩阵中的共现次数（可视性好一点。。）
@@ -346,3 +387,13 @@ def excel_export_co_matrix(r_list, c_list, excel_name):
 # stuff_list = get_list("物象词")
 # location_list = get_list_top("地点词", 255)
 # excel_export_co_matrix(stuff_list, location_list, "output_coverage/物象地点-总.xls")
+
+dict_to_file(get_dict("人词"), "guanzhong_word/人词count.txt")
+dict_to_file(get_dict("地点词"), "guanzhong_word/地点词count.txt")
+dict_to_file(get_dict("物象词"), "guanzhong_word/物象词count.txt")
+dict_to_file(get_dict("时词"), "guanzhong_word/时词count.txt")
+dict_to_file(get_dict("状态词"), "guanzhong_word/状态词count.txt")
+dict_to_file(get_dict("动词"), "guanzhong_word/动词count.txt")
+dict_to_file(get_dict("在哪写"), "guanzhong_word/在哪写count.txt")
+dict_to_file(get_dict("写的哪"), "guanzhong_word/写的哪count.txt")
+# file_to_dict("guanzhong_word/人词count.txt")

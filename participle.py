@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import re
+
 from jiayan import load_lm
 from jiayan import CharHMMTokenizer
 import xlrd
@@ -6,6 +8,7 @@ import xlwt
 import pandas as pd
 import os
 from jiayan import WordNgramTokenizer
+import kenlm
 
 test_text = "往时中补右，扈跸上元初。反气凌行在，妖星下直庐。六龙瞻汉阙，万骑略姚墟。" \
             "玄朔回天步，神都忆帝车。一戎才汗马，百姓免为鱼。通籍蟠螭印，差肩列凤舆。" \
@@ -21,8 +24,8 @@ text = '是故内圣外王之道，暗而不明，郁而不发，天下之人各
 
 
 def print_list(list_data):
-    for d in list_data:
-        print(d)
+    for dd in list_data:
+        print(dd)
 
 
 def text_tokenize(text_data):
@@ -36,17 +39,19 @@ def text_tokenize(text_data):
     return result
 
 
-workbook = xlrd.open_workbook("jieba.xlsx")
+workbook = xlrd.open_workbook("全唐诗数据库0805.xlsx")
 sheet = workbook.sheet_by_index(0)
-poet_data = sheet.col_values(1)
+title_data = sheet.col_values(2)
+poet_data = sheet.col_values(4)
 # print_list(poet_data)
 
 poet_data = poet_data[1:]
 participle = []
 i = 1
 for d in poet_data:
-    d = d.replace(" ", "")
-    # print(d)
+    d = title_data[i] + d
+    d = re.sub(u"（.*?）", "", d)
+    d = re.sub(u"<.*?>", "", d)
     p = text_tokenize(d)
     print(str(i) + " " + p)
     participle.append(p)
@@ -60,4 +65,4 @@ for data in participle:
     sheet.write(count, 1, data)
     count = count+1
 
-book.save("jiayan.xls")
+book.save("全唐诗jiayan.xls")

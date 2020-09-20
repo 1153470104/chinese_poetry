@@ -30,6 +30,18 @@ workbook = xlrd.open_workbook("908deduplicate.xls")
 r_sheet = workbook.sheet_by_index(0)
 
 
+def get_txt_top(path, count):
+    f = open(path, 'r', encoding='utf-8')
+    t_list = []
+    line = f.readline()
+    for i in range(count):
+        t_list.append(line.split(",")[0])
+        line = f.readline()
+    f.close()
+    # print(t_list)
+    return t_list
+
+
 def get_list_top(type_txt, number):
     word_dict = {}
     i = 0
@@ -388,12 +400,34 @@ def excel_export_co_matrix(r_list, c_list, excel_name):
 # location_list = get_list_top("地点词", 255)
 # excel_export_co_matrix(stuff_list, location_list, "output_coverage/物象地点-总.xls")
 
-dict_to_file(get_dict("人词"), "guanzhong_word/人词count.txt")
-dict_to_file(get_dict("地点词"), "guanzhong_word/地点词count.txt")
-dict_to_file(get_dict("物象词"), "guanzhong_word/物象词count.txt")
-dict_to_file(get_dict("时词"), "guanzhong_word/时词count.txt")
-dict_to_file(get_dict("状态词"), "guanzhong_word/状态词count.txt")
-dict_to_file(get_dict("动词"), "guanzhong_word/动词count.txt")
-dict_to_file(get_dict("在哪写"), "guanzhong_word/在哪写count.txt")
-dict_to_file(get_dict("写的哪"), "guanzhong_word/写的哪count.txt")
-# file_to_dict("guanzhong_word/人词count.txt")
+# dict_to_file(get_dict("人词"), "guanzhong_word/人词count.txt")
+# dict_to_file(get_dict("地点词"), "guanzhong_word/地点词count.txt")
+# dict_to_file(get_dict("物象词"), "guanzhong_word/物象词count.txt")
+# dict_to_file(get_dict("时词"), "guanzhong_word/时词count.txt")
+# dict_to_file(get_dict("状态词"), "guanzhong_word/状态词count.txt")
+# dict_to_file(get_dict("动词"), "guanzhong_word/动词count.txt")
+# dict_to_file(get_dict("在哪写"), "guanzhong_word/在哪写count.txt")
+# dict_to_file(get_dict("写的哪"), "guanzhong_word/写的哪count.txt")
+# # file_to_dict("guanzhong_word/人词count.txt")
+
+# work, output some files
+stuff_list50 = get_txt_top("guanzhong_word/物象词tfidf-sort.txt", 50)
+stuff_list100 = get_txt_top("guanzhong_word/物象词tfidf-sort.txt", 100)
+location_list50 = get_txt_top("guanzhong_word/地点词tfidf-sort.txt", 50)
+location_list100 = get_txt_top("guanzhong_word/地点词tfidf-sort.txt", 100)
+# status_list50 = get_list_top("状态词", 50)
+# status_list100 = get_list_top("状态词", 100)
+# time_list50 = get_list_top("时词", 50)
+# time_list100 = get_list_top("时词", 100)
+people_list50 = get_txt_top("guanzhong_word/人词tfidf-sort.txt", 50)
+people_list100 = get_txt_top("guanzhong_word/人词tfidf-sort.txt", 100)
+#
+excel_export_co_matrix(stuff_list50, stuff_list50, "output/tf物象物象50.xls")
+excel_export_co_matrix(location_list50, location_list50, "output/tf地点地点50.xls")
+excel_export_co_matrix(stuff_list50, location_list50, "output/tf地点物象50.xls")
+excel_export_co_matrix(people_list50, location_list50, "output/tf地点人50.xls")
+
+excel_export_co_matrix(stuff_list100, stuff_list100, "output/tf物象物象100.xls")
+excel_export_co_matrix(location_list100, location_list100, "output/tf地点地点100.xls")
+excel_export_co_matrix(stuff_list100, location_list100, "output/tf地点物象100.xls")
+excel_export_co_matrix(people_list100, location_list100, "output/tf地点人100.xls")

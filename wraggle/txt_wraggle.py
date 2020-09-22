@@ -91,6 +91,28 @@ def tf_idf(doc, base):
     return tf_dict
 
 
+def idf(word, group_list):
+    count = 0
+    for d in group_list:
+        if word in d:
+            count = count + 1
+    g_length = len(group_list)
+    return log((g_length+1) / (count + 1))
+
+
+def real_tf_idf(doc, group_list):
+    d_dict = file_to_dict(doc)
+    tf_dict = {}
+    # i = 0
+    for d in d_dict:
+        # print(i)
+        # i = i + 1
+        print(d + ": ", end="")
+        print(idf(d, group_list))
+        tf_dict[d] = float(d_dict[d]) * idf(d, group_list)
+    # print_dict(tf_dict)
+    return tf_dict
+
 # dict_to_file(tf_idf("guanzhong_word/人词count.txt", "全唐诗dict.txt"), "guanzhong_word/人词tf-idf.txt")
 # dict_to_file(tf_idf("guanzhong_word/动词count.txt", "全唐诗dict.txt"), "guanzhong_word/动词tf-idf.txt")
 # dict_to_file(tf_idf("guanzhong_word/时词count.txt", "全唐诗dict.txt"), "guanzhong_word/时词tf-idf.txt")

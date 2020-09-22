@@ -25,6 +25,13 @@ def print_matrix(matrix):
         print()
 
 
+def get_column_list(matrix_name):
+    # 打开excel表格
+    workbook = xlrd.open_workbook(matrix_name)
+    r_sheet = workbook.sheet_by_index(0)
+    return r_sheet.row_values(0)[1:]
+
+
 def get_matrix(matrix_name):
     # 打开excel表格
     workbook = xlrd.open_workbook(matrix_name)
@@ -119,18 +126,18 @@ def matrix_flat(matrix_name, output_name):
 # # matrix_flat("商山长安.xls", "商山长安flat.xls")
 #
 # get the flat file of matrices
-matrix_flat("output/tf物象物象50.xls", "output920/tf物象物象50flat.xls")
-matrix_flat("output/tf地点地点50.xls", "output920/tf地点地点50flat.xls")
-matrix_flat("output/tf地点物象50.xls", "output920/tf地点物象50flat.xls")
-# matrix_flat("output/tf地点时间50.xls", "output920/tf地点时间50flat.xls")
-matrix_flat("output/tf地点人50.xls", "output920/tf地点人50flat.xls")
-# matrix_flat("output/tf地点状态50.xls", "output920/tf地点状态50flat.xls")
-
-matrix_flat("output/tf物象物象100.xls", "output920/tf物象物象100flat.xls")
-matrix_flat("output/tf地点地点100.xls", "output920/tf地点地点100flat.xls")
-matrix_flat("output/tf地点物象100.xls", "output920/tf地点物象100flat.xls")
-# matrix_flat("output/tf地点时间100.xls", "output920/tf地点时间100flat.xls")
-matrix_flat("output/tf地点人100.xls", "output920/tf地点人100flat.xls")
+# matrix_flat("output/tf物象物象50.xls", "output920/tf物象物象50flat.xls")
+# matrix_flat("output/tf地点地点50.xls", "output920/tf地点地点50flat.xls")
+# matrix_flat("output/tf地点物象50.xls", "output920/tf地点物象50flat.xls")
+# # matrix_flat("output/tf地点时间50.xls", "output920/tf地点时间50flat.xls")
+# matrix_flat("output/tf地点人50.xls", "output920/tf地点人50flat.xls")
+# # matrix_flat("output/tf地点状态50.xls", "output920/tf地点状态50flat.xls")
+#
+# matrix_flat("output/tf物象物象100.xls", "output920/tf物象物象100flat.xls")
+# matrix_flat("output/tf地点地点100.xls", "output920/tf地点地点100flat.xls")
+# matrix_flat("output/tf地点物象100.xls", "output920/tf地点物象100flat.xls")
+# # matrix_flat("output/tf地点时间100.xls", "output920/tf地点时间100flat.xls")
+# matrix_flat("output/tf地点人100.xls", "output920/tf地点人100flat.xls")
 # matrix_flat("output/tf地点状态100.xls", "output920/tf地点状态100flat.xls")
 
 # print_matrix(get_csv_matrix("output/tf物象物象5.csv"))

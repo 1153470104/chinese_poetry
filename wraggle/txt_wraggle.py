@@ -113,6 +113,22 @@ def real_tf_idf(doc, group_list):
     # print_dict(tf_dict)
     return tf_dict
 
+
+def add_id(path, id_path):
+    f = open(path, 'r', encoding='utf-8')
+    id_f = open(id_path, 'w', encoding='utf-8')
+
+    line = f.readline()
+    i = 1
+    while line:
+        line = str(i)+","+line
+        id_f.write(line)
+        line = f.readline()
+        i = i+1
+
+    id_f.close()
+    f.close()
+
 # dict_to_file(tf_idf("guanzhong_word/人词count.txt", "全唐诗dict.txt"), "guanzhong_word/人词tf-idf.txt")
 # dict_to_file(tf_idf("guanzhong_word/动词count.txt", "全唐诗dict.txt"), "guanzhong_word/动词tf-idf.txt")
 # dict_to_file(tf_idf("guanzhong_word/时词count.txt", "全唐诗dict.txt"), "guanzhong_word/时词tf-idf.txt")

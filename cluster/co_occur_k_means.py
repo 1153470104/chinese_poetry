@@ -1,7 +1,7 @@
 from sklearn.cluster import KMeans
 import numpy as np
-from matrix_excel_wraggle import get_matrix
-from matrix_excel_wraggle import get_column_list
+from matrix_excel_wrangle import get_matrix
+from matrix_excel_wrangle import get_column_list
 from co_occur import print_list
 
 

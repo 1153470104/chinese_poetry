@@ -3,26 +3,13 @@ import xlrd
 import xlwt
 import csv
 import codecs
+from co_occur import print_list
+from co_occur import print_dict
+from co_occur import print_matrix
 
-
-# 打印数列
-def print_list(list_data):
-    for d in list_data:
-        print(d)
-
-
-# 打印字典
-def print_dict(dict_data):
-    for d in dict_data:
-        print(d + ": " + str(dict_data[d]))
-
-
-# 打印字典
-def print_matrix(matrix):
-    for r in matrix:
-        for c in r:
-            print(str(c) + "\t", end='')
-        print()
+"""
+处理共现matrix的一些函数
+"""
 
 
 def get_column_list(matrix_name):

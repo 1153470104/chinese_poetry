@@ -1,16 +1,10 @@
 from math import log
+from co_occur import print_list
+from co_occur import print_dict
 
-
-# 打印字典
-def print_dict(dict_data):
-    for d in dict_data:
-        print(d + ": " + str(dict_data[d]))
-
-
-# 打印列表
-def print_list(list_data):
-    for d in list_data:
-        print(d)
+"""
+处理纯文本文件的一些函数
+"""
 
 
 def dict_sort_list(w_dict):
@@ -26,6 +20,23 @@ def dict_sort_list(w_dict):
         i = i+1
     # print_list(sort_list)
     return sort_list
+
+
+def add_id(path, id_path):
+    """ 把path中的文档加个 id 输出到id_path中 """
+    f = open(path, 'r', encoding='utf-8')
+    id_f = open(id_path, 'w', encoding='utf-8')
+
+    line = f.readline()
+    i = 1
+    while line:
+        line = str(i)+","+line
+        id_f.write(line)
+        line = f.readline()
+        i = i+1
+
+    id_f.close()
+    f.close()
 
 
 def file_to_dict(path):
@@ -92,6 +103,9 @@ def tf_idf(doc, base):
 
 
 def idf(word, group_list):
+    """
+    假的 idf。。不要用
+    """
     count = 0
     for d in group_list:
         if word in d:
@@ -101,6 +115,12 @@ def idf(word, group_list):
 
 
 def real_tf_idf(doc, group_list):
+    """
+    目前看来还行的tf-idf
+    :param doc: 需要进行tf-idf 计算的文档，由词汇和词频组成
+    :param group_list: 一个列表，每个列表的元素为该组内包含的所有词汇的集合
+    :return: 返回一个词汇：tf-idf 对应的字典
+    """
     d_dict = file_to_dict(doc)
     tf_dict = {}
     # i = 0
@@ -113,21 +133,6 @@ def real_tf_idf(doc, group_list):
     # print_dict(tf_dict)
     return tf_dict
 
-
-def add_id(path, id_path):
-    f = open(path, 'r', encoding='utf-8')
-    id_f = open(id_path, 'w', encoding='utf-8')
-
-    line = f.readline()
-    i = 1
-    while line:
-        line = str(i)+","+line
-        id_f.write(line)
-        line = f.readline()
-        i = i+1
-
-    id_f.close()
-    f.close()
 
 # dict_to_file(tf_idf("guanzhong_word/人词count.txt", "全唐诗dict.txt"), "guanzhong_word/人词tf-idf.txt")
 # dict_to_file(tf_idf("guanzhong_word/动词count.txt", "全唐诗dict.txt"), "guanzhong_word/动词tf-idf.txt")

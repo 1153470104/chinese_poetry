@@ -1,8 +1,8 @@
 from co_occur import get_txt_top
 from co_occur import excel_export_co_matrix
-from txt_wraggle import file_to_dict
-from txt_wraggle import dict_sort_list
-from txt_wraggle import list_to_file
+from txt_wrangle import file_to_dict
+from txt_wrangle import dict_sort_list
+from txt_wrangle import list_to_file
 
 
 stuff_list50 = get_txt_top("../output/tfidf_word/物象词500.txt", 50)

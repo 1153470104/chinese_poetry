@@ -10,6 +10,12 @@ import os
 from jiayan import WordNgramTokenizer
 import kenlm
 
+
+"""
+利用jiayan包进行唐诗分词
+"""
+
+
 # test_text = "往时中补右，扈跸上元初。反气凌行在，妖星下直庐。六龙瞻汉阙，万骑略姚墟。" \
 #             "玄朔回天步，神都忆帝车。一戎才汗马，百姓免为鱼。通籍蟠螭印，差肩列凤舆。" \
 #             "事殊迎代邸，喜异赏朱虚。寇盗方归顺，乾坤欲晏如。不才同补衮，奉诏许牵裾。" \
@@ -29,7 +35,7 @@ def print_list(list_data):
 
 
 def text_tokenize(text_data):
-    lm = load_lm('jiayan.klm')
+    lm = load_lm('../jiayan.klm')
     tokenizer = CharHMMTokenizer(lm)
     result = ''
     t_list = list(tokenizer.tokenize(text_data))
@@ -40,7 +46,7 @@ def text_tokenize(text_data):
 
 
 # 打开全唐诗的excel表格
-workbook = xlrd.open_workbook("全唐诗数据库0805.xlsx")
+workbook = xlrd.open_workbook("../input/全唐诗数据库0805.xlsx")
 sheet = workbook.sheet_by_index(0)
 title_data = sheet.col_values(2)
 poet_data = sheet.col_values(4)

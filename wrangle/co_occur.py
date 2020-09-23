@@ -4,6 +4,15 @@ import xlwt
 import csv
 import codecs
 
+"""
+本程序主要用于计算共现矩阵
+
+辅助函数：print_list() print_dict() print_matrix()
+取得输入文本的函数：get_txt_top() get_list_top() get_list() get_dict() file_to_dict()
+共现计算函数：co_matrix()
+结果处理函数：dict_to_file() list_co_matrix() excel_export_co_matrix()
+"""
+
 
 # 打印数列
 def print_list(list_data):

@@ -4,6 +4,11 @@ import xlwt
 from xlutils.copy import copy
 
 
+"""
+提取 excel 文件的不同列，分别统计存储到新文件的不同表的函数
+"""
+
+
 # 打印数列
 def print_list(list_data):
     for d in list_data:

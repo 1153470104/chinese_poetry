@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 import xlrd
 
+"""
+把某个excel文档处理成特定模式的程序
+"""
+
 
 def print_list(list_data):
     for d in list_data:

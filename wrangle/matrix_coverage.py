@@ -1,5 +1,10 @@
 import matplotlib.pyplot as plt
-from wraggle import co_occur, matrix_excel_wraggle
+from wrangle import co_occur, matrix_excel_wrangle
+
+"""
+计算共现矩阵覆盖率的程序
+未写完，目前只能计算非对称共现矩阵的覆盖度
+"""
 
 
 # get the list of top words
@@ -63,7 +68,7 @@ def coverage(w_list1, w_list2, rank_list, symmetry):
 # coverage(c_list, r_list, rk_list, False)
 
 def file_coverage(type1, top_num1, type2, top_num2, matrix_path, symmetry):
-    rk_list = matrix_excel_wraggle.sort_excel_matrix(matrix_path)
+    rk_list = matrix_excel_wrangle.sort_excel_matrix(matrix_path)
     c_list = co_occur.get_list_top(type1, top_num1)
     r_list = co_occur.get_list_top(type2, top_num2)
     return coverage(c_list, r_list, rk_list, symmetry)

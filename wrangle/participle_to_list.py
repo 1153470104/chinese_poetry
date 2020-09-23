@@ -1,12 +1,10 @@
 import re
 import xlrd
-# from wraggle import co_occur
+from co_occur import print_list
 
-
-# 打印数列
-def print_list(list_data):
-    for d in list_data:
-        print(d)
+"""
+处理分词结果的一些函数
+"""
 
 
 # 打开excel表格

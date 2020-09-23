@@ -3,6 +3,11 @@ import xlrd
 from xlutils.copy import copy
 
 
+"""
+利用地词合并表单，对指代相同的地词进行合并的程序
+"""
+
+
 # 打印数列
 def print_list(list_data):
     for d in list_data:

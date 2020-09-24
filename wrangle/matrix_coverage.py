@@ -74,20 +74,20 @@ def file_coverage(type1, top_num1, type2, top_num2, matrix_path, symmetry):
     return coverage(c_list, r_list, rk_list, symmetry)
 
 
-x = []
-y = []
-z = []
-for i in range(1, 25):
-    r2 = file_coverage("物象词", i * 10, "地点词", i * 10
-                       , "output_coverage/物象地点-总.xls", False)
-    x.append(i * 10)
-    y.append(r2[0])
-    z.append(r2[1])
-
-plt.figure()
-plt.plot(x, y)
-plt.title("cover percentage")
-plt.figure()
-plt.plot(x, z)
-plt.title("weight coverage")
-plt.show()
+# x = []
+# y = []
+# z = []
+# for i in range(1, 25):
+#     r2 = file_coverage("物象词", i * 10, "地点词", i * 10
+#                        , "output_coverage/物象地点-总.xls", False)
+#     x.append(i * 10)
+#     y.append(r2[0])
+#     z.append(r2[1])
+#
+# plt.figure()
+# plt.plot(x, y)
+# plt.title("cover percentage")
+# plt.figure()
+# plt.plot(x, z)
+# plt.title("weight coverage")
+# plt.show()

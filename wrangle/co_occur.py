@@ -281,62 +281,64 @@ def excel_export_co_matrix(r_list, c_list, excel_name):
     w_book.save(excel_name)
 
 
-# def csv_export_co_matrix(r_list, c_list, csv_name):
-#     """
-#     根据两个数列中的关键词计算共现矩阵
-#     根据输入的列属性值和行属性值，以及excel表格中的数据
-#     export an csv table of the matrix
-#     :param csv_name: 要保存的矩阵名字
-#     :param r_list: r_list: row list, as one of the input list
-#     :param c_list: column list as one of the input list
-#     :return: 返回由上两个列表所计算出的共现矩阵
-#     """
-#     r = len(r_list)
-#     c = len(c_list)
-#     print("The size of matrix: " + str(r) + ", " + str(c))
-#
-#     data_csv = open(csv_name, 'w')
-#     data_csv.write(codecs.BOM_UTF8)
-#     csv_writer = csv.writer(data_csv, dialect='excel', delimiter=' ', quotechar=',')
-#     csv_writer.writerow(c_list.insert(0, ""))
-#
-#     # 遍历每一个矩阵的单位，计算该单位对应两个word的共现次数
-#     for y in range(r):
-#         r_word = r_list[y]
-#         count_list = [r_word]
-#         for x in range(c):
-#             c_word = c_list[x]
-#             co_occur_time = 0
-#
-#             # 循环统计两个word的共现次数
-#             i = 0
-#             poet_number = 0
-#             count = [0, 0]
-#             while True:
-#                 try:
-#                     i = i + 1
-#                     if poet_number != r_sheet.cell_value(i, 0):
-#                         poet_number = r_sheet.cell_value(i, 0)
-#                         if count[0] == count[1] and count[1] == 1:
-#                             co_occur_time = co_occur_time + 1
-#                         count = [0, 0]
-#                     if r_sheet.cell_value(i, 4) == c_word:
-#                         count[0] = 1
-#                     elif r_sheet.cell_value(i, 4) == r_word:
-#                         count[1] = 1
-#                 except IndexError:  # 用错误处理机制进行退出
-#                     # 避免因为到末尾导致最后一首诗的共现次数没有算入
-#                     # 在except中也检查一遍count，避免遗漏
-#                     if count[0] == count[1] and count[1] == 1:
-#                         co_occur_time = co_occur_time + 1
-#                     # print(str(y) + "get to the end")
-#                     break
-#                 else:
-#                     continue
-#             count_list.append(poet_number)
-#         csv_writer.writerow(count_list)
-#         print(str(y))
-#         data_csv.close()
+def csv_export_co_matrix(r_list, c_list, csv_name):
+    """
+    根据两个数列中的关键词计算共现矩阵
+    根据输入的列属性值和行属性值，以及csv表格中的数据
+    export an csv table of the matrix
+    :param csv_name: 要保存的矩阵名字
+    :param r_list: r_list: row list, as one of the input list
+    :param c_list: column list as one of the input list
+    :return: 返回由上两个列表所计算出的共现矩阵
+    """
+    r = len(r_list)
+    c = len(c_list)
+    print("The size of matrix: " + str(r) + ", " + str(c))
+
+    # 血的教训，要加newline=""
+    data_csv = open(csv_name, 'w', newline="")
+    # data_csv.write(codecs.BOM_UTF8)
+    csv_writer = csv.writer(data_csv, dialect='excel', delimiter=' ', quotechar=',')
+    c_list.insert(0, "00")
+    csv_writer.writerow(c_list)
+
+    # 遍历每一个矩阵的单位，计算该单位对应两个word的共现次数
+    for y in range(r):
+        r_word = r_list[y]
+        count_list = [r_word]
+        for x in range(c):
+            c_word = c_list[x]
+            co_occur_time = 0
+
+            # 循环统计两个word的共现次数
+            i = 0
+            poet_number = 0
+            count = [0, 0]
+            while True:
+                try:
+                    i = i + 1
+                    if poet_number != r_sheet.cell_value(i, 0):
+                        poet_number = r_sheet.cell_value(i, 0)
+                        if count[0] == count[1] and count[1] == 1:
+                            co_occur_time = co_occur_time + 1
+                        count = [0, 0]
+                    if r_sheet.cell_value(i, 4) == c_word:
+                        count[0] = 1
+                    elif r_sheet.cell_value(i, 4) == r_word:
+                        count[1] = 1
+                except IndexError:  # 用错误处理机制进行退出
+                    # 避免因为到末尾导致最后一首诗的共现次数没有算入
+                    # 在except中也检查一遍count，避免遗漏
+                    if count[0] == count[1] and count[1] == 1:
+                        co_occur_time = co_occur_time + 1
+                    # print(str(y) + "get to the end")
+                    break
+                else:
+                    continue
+            count_list.append(co_occur_time)
+        csv_writer.writerow(count_list)
+        print(str(y))
+    data_csv.close()
 
 # # test1: test print matrix & init matrix
 # print_matrix(co_matrix([9, 0], [9, 8, 3]))

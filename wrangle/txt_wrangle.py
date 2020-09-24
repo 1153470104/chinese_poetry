@@ -134,6 +134,18 @@ def real_tf_idf(doc, group_list):
     return tf_dict
 
 
+def txt_rm_location(dict_path, path, path_rm):
+    location_dict = file_to_dict(dict_path)
+    f = open(path, 'r', encoding='utf-8')
+    w_f = open(path_rm, 'w', encoding='utf-8')
+    line = f.readline()
+    while line:
+        if not line.split(",")[0] in location_dict.keys():
+            w_f.write(line)
+        line = f.readline()
+    w_f.close()
+    f.close()
+
 # dict_to_file(tf_idf("guanzhong_word/人词count.txt", "全唐诗dict.txt"), "guanzhong_word/人词tf-idf.txt")
 # dict_to_file(tf_idf("guanzhong_word/动词count.txt", "全唐诗dict.txt"), "guanzhong_word/动词tf-idf.txt")
 # dict_to_file(tf_idf("guanzhong_word/时词count.txt", "全唐诗dict.txt"), "guanzhong_word/时词tf-idf.txt")

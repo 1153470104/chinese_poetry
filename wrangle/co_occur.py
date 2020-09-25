@@ -296,7 +296,7 @@ def csv_export_co_matrix(r_list, c_list, csv_name):
     print("The size of matrix: " + str(r) + ", " + str(c))
 
     # 血的教训，要加newline=""
-    data_csv = open(csv_name, 'w', newline="")
+    data_csv = open(csv_name, 'w', newline="", encoding='gb18030')
     # data_csv.write(codecs.BOM_UTF8)
     csv_writer = csv.writer(data_csv, dialect='excel', delimiter=' ', quotechar=',')
     c_list.insert(0, "00")

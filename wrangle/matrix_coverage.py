@@ -67,10 +67,17 @@ def coverage(w_list1, w_list2, rank_list, symmetry):
 # r_list = co_occur.get_list_top("在哪写", 100)
 # coverage(c_list, r_list, rk_list, False)
 
-def file_coverage(type1, top_num1, type2, top_num2, matrix_path, symmetry):
-    rk_list = matrix_excel_wrangle.sort_excel_matrix(matrix_path)
-    c_list = co_occur.get_list_top(type1, top_num1)
-    r_list = co_occur.get_list_top(type2, top_num2)
+# def file_coverage(type1, top_num1, type2, top_num2, matrix_path, symmetry):
+#     rk_list = matrix_excel_wrangle.sort_excel_matrix(matrix_path)
+#     c_list = co_occur.get_list_top(type1, top_num1)
+#     r_list = co_occur.get_list_top(type2, top_num2)
+#     return coverage(c_list, r_list, rk_list, symmetry)
+
+
+def file_coverage(type1_txt, top_num1, type2_txt, top_num2, matrix_path, symmetry):
+    rk_list = matrix_excel_wrangle.sort_csv_matrix(matrix_path)
+    c_list = co_occur.get_txt_top(type1_txt, top_num1)
+    r_list = co_occur.get_txt_top(type2_txt, top_num2)
     return coverage(c_list, r_list, rk_list, symmetry)
 
 

@@ -3,9 +3,9 @@ import xlrd
 import xlwt
 import csv
 import codecs
-from co_occur import print_list
-from co_occur import print_dict
-from co_occur import print_matrix
+from wrangle.co_occur import print_list
+from wrangle.co_occur import print_dict
+from wrangle.co_occur import print_matrix
 
 """
 处理共现matrix的一些函数
@@ -37,22 +37,28 @@ def get_matrix(matrix_name):
     return matrix
 
 
-# def get_csv_matrix(matrix_name):
-#     # 打开excel表格
-#     with codecs.open(matrix_name, 'r', encoding='gb2312') as csv_file:
-#         reader = csv.reader(csv_file)
-#         matrix = [row for row in reader]
+def get_csv_matrix(matrix_name):
+    # 打开excel表格
+    with codecs.open(matrix_name, 'r', encoding='gb18030') as csv_file:
+        reader = csv.reader(csv_file)
+        matrix = []
+        for row in reader:
+            row = str(row)
+            row = row.replace("[", "")
+            row = row.replace("]", "")
+            row = row.replace("'", "")
+            matrix.append(str(row).split(" "))
 
         # matrix = []
         # i = 0
-        # print(type(reader))
+        # # print(type(reader))
         # for row in reader:
-        #     print(type(row))
+        #     # print(type(row))
         #     if i > 0:
         #         matrix.append(row[1:])
         #     i = i+1
 
-    # return matrix
+    return matrix
 
 
 def sort_matrix(r_list, c_list, matrix):
@@ -64,27 +70,29 @@ def sort_matrix(r_list, c_list, matrix):
         for c in range(c_len):
             matrix_dict[r_list[r] + " - " + c_list[c]] = matrix[r][c]
     sort_list = sorted(matrix_dict.items(), key=lambda x: x[1], reverse=True)
-    # print_list(sort_list)
+    print_list(sort_list)
 
     return sort_list
 
 
-def sort_excel_matrix(matrix_name):
+def sort_csv_matrix(matrix_name):
+    raw_matrix = get_csv_matrix(matrix_name)
+    c_list = raw_matrix[0][1:]
+    r_list = [a[0] for a in raw_matrix][1:]
+    print(c_list)
+    print(r_list)
+    raw_matrix = raw_matrix[1:]
+    e_matrix = [a[1:] for a in raw_matrix]
+    return sort_matrix(r_list, c_list, e_matrix)
 
+
+def sort_excel_matrix(matrix_name):
     e_matrix = get_matrix(matrix_name)
     workbook = xlrd.open_workbook(matrix_name)
     r_sheet = workbook.sheet_by_index(0)
     c_list = r_sheet.row_values(0)[1:]
     r_list = r_sheet.col_values(0)[1:]
     return sort_matrix(r_list, c_list, e_matrix)
-
-
-# def sort_csv_matrix(matrix_name):
-#
-#     e_matrix = get_matrix(matrix_name)
-#     c_list = r_sheet.row_values(0)[1:]
-#     r_list = r_sheet.col_values(0)[1:]
-#     sort_matrix(r_list, c_list, e_matrix)
 
 
 def matrix_flat(matrix_name, output_name):

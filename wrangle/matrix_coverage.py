@@ -24,13 +24,17 @@ def coverage(w_list1, w_list2, rank_list, symmetry):
 
     if symmetry:
         w_length = len(w_list1)
-        top_list = rank_list[0: w_length * w_length / 2 - w_length / 2]
+        top_list = rank_list[0: w_length * w_length - w_length]
         r_dict = {}
         for r in top_list:
-            r.replace("(", "")
-            r.replace(")", "")
-            r.replace(" ", "")
+            r = r.replace("(", "")
+            r = r.replace(")", "")
+            r = r.replace(" ", "")
+            r = r.replace("'", "")
+            r = r.replace(".0", "")
+            total_times = total_times + int(r.split(",")[1])
             r_dict[r.split(",")[0]] = int(r.split(",")[1])
+        total_times = total_times / 2
         for i in range(w_length):
             for j in range(i, w_length):
                 co_word = w_list1[i] + "-" + w_list2[j]

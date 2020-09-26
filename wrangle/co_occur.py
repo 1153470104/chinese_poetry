@@ -120,7 +120,6 @@ def get_dict(type_txt):
             break
         else:
             continue
-
     return word_dict
 
 

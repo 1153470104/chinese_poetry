@@ -70,7 +70,7 @@ def sort_matrix(r_list, c_list, matrix):
         for c in range(c_len):
             matrix_dict[r_list[r] + " - " + c_list[c]] = matrix[r][c]
     sort_list = sorted(matrix_dict.items(), key=lambda x: x[1], reverse=True)
-    print_list(sort_list)
+    # print_list(sort_list)
 
     return sort_list
 
@@ -79,8 +79,8 @@ def sort_csv_matrix(matrix_name):
     raw_matrix = get_csv_matrix(matrix_name)
     c_list = raw_matrix[0][1:]
     r_list = [a[0] for a in raw_matrix][1:]
-    print(c_list)
-    print(r_list)
+    # print(c_list)
+    # print(r_list)
     raw_matrix = raw_matrix[1:]
     e_matrix = [a[1:] for a in raw_matrix]
     return sort_matrix(r_list, c_list, e_matrix)

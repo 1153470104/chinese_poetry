@@ -24,9 +24,10 @@ def coverage(w_list1, w_list2, rank_list, symmetry):
 
     if symmetry:
         w_length = len(w_list1)
-        top_list = rank_list[0: w_length * w_length - w_length]
+        top_list = rank_list[0: w_length * w_length]
         r_dict = {}
         for r in top_list:
+            r = str(r)
             r = r.replace("(", "")
             r = r.replace(")", "")
             r = r.replace(" ", "")
@@ -36,7 +37,7 @@ def coverage(w_list1, w_list2, rank_list, symmetry):
             r_dict[r.split(",")[0]] = int(r.split(",")[1])
         total_times = total_times / 2
         for i in range(w_length):
-            for j in range(i, w_length):
+            for j in range(w_length):
                 co_word = w_list1[i] + "-" + w_list2[j]
                 # print(co_word)
                 if co_word in r_dict.keys():
@@ -45,9 +46,9 @@ def coverage(w_list1, w_list2, rank_list, symmetry):
         print("top " + str(len(top_list)) + ", ", end='')
         print("matrix cover " + str(occur_time) + ", ", end='')
         a = occur_time / len(top_list)
-        b = times_sum / total_times
+        b = times_sum / total_times / 2
         print("weight coverage: " + str(b))
-        return [a, b]
+        return [a, b, times_sum]
 
     else:
         w1_length = len(w_list1)
@@ -76,9 +77,9 @@ def coverage(w_list1, w_list2, rank_list, symmetry):
         print("top " + str(len(top_list)) + ", ", end='')
         print("matrix cover " + str(occur_time) + ", ", end='')
         a = occur_time / len(top_list)
-        b = times_sum / total_times
+        b = (times_sum / total_times)
         print("weight coverage: " + str(b))
-        return [a, b]
+        return [a, b, times_sum]
 
 
 # rk_list = matrix_excel_wraggle.sort_excel_matrix("时词在哪写.xls")
@@ -100,20 +101,28 @@ def file_coverage(type1_txt, top_num1, type2_txt, top_num2, matrix_path, symmetr
     return coverage(c_list, r_list, rk_list, symmetry)
 
 
-# x = []
-# y = []
-# z = []
-# for i in range(1, 25):
-#     r2 = file_coverage("物象词", i * 10, "地点词", i * 10
-#                        , "output_coverage/物象地点-总.xls", False)
-#     x.append(i * 10)
-#     y.append(r2[0])
-#     z.append(r2[1])
-#
-# plt.figure()
-# plt.plot(x, y)
-# plt.title("cover percentage")
-# plt.figure()
-# plt.plot(x, z)
-# plt.title("weight coverage")
-# plt.show()
+def coverage_iter_graph(type1_txt, type2_txt, matrix_path, symmetry):
+    x = []
+    y = []
+    z = []
+    d = []
+    g = []
+    for i in range(1, 60):
+        r2 = file_coverage(type1_txt, i * 5, type2_txt, i * 5
+                           , matrix_path, symmetry)
+        x.append(i * 5)
+        y.append(r2[0])
+        z.append(r2[1])
+        d.append(r2[2])
+        # g.append()
+
+    plt.figure()
+    plt.plot(x, y)
+    plt.title("cover percentage")
+    plt.figure()
+    plt.plot(x, z)
+    plt.title("weight coverage")
+    plt.figure()
+    plt.plot(x, d)
+    plt.title("total number")
+    plt.show()

@@ -18,7 +18,6 @@ def dict_sort_list(w_dict):
     for ii in sort_list:
         sort_list[i] = [ii[0], ii[1]]
         i = i+1
-    # print_list(sort_list)
     return sort_list
 
 

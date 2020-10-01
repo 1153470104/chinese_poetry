@@ -101,7 +101,7 @@ def file_coverage(type1_txt, top_num1, type2_txt, top_num2, matrix_path, symmetr
     return coverage(c_list, r_list, rk_list, symmetry)
 
 
-def coverage_iter_graph(type1_txt, type2_txt, matrix_path, symmetry):
+def coverage_iter_graph(type1_txt, type2_txt, matrix_path, symmetry, name):
     x = []
     y = []
     z = []
@@ -118,11 +118,11 @@ def coverage_iter_graph(type1_txt, type2_txt, matrix_path, symmetry):
 
     plt.figure()
     plt.plot(x, y)
-    plt.title("cover percentage")
+    plt.title(name + ": cover percentage")
     plt.figure()
     plt.plot(x, z)
-    plt.title("weight coverage")
-    plt.figure()
-    plt.plot(x, d)
-    plt.title("total number")
+    plt.title(name + ": weight coverage")
+    # plt.figure()
+    # plt.plot(x, d)
+    # plt.title("total number")
     plt.show()

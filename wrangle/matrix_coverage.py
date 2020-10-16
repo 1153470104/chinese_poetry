@@ -3,7 +3,6 @@ from wrangle import co_occur, matrix_excel_wrangle
 
 """
 计算共现矩阵覆盖率的程序
-未写完，目前只能计算非对称共现矩阵的覆盖度
 """
 
 

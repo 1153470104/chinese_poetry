@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import re
-
 from jiayan import load_lm
 from jiayan import CharHMMTokenizer
 import xlrd
@@ -9,6 +8,7 @@ import pandas as pd
 import os
 from jiayan import WordNgramTokenizer
 import kenlm
+import jieba
 
 
 """
@@ -45,33 +45,43 @@ def text_tokenize(text_data):
     return result
 
 
-# 打开全唐诗的excel表格
-workbook = xlrd.open_workbook("../input/全唐诗数据库0805.xlsx")
-sheet = workbook.sheet_by_index(0)
-title_data = sheet.col_values(2)
-poet_data = sheet.col_values(4)
-# print_list(poet_data)
+def jiayan_tokenize(input_list):
+    participle = []
+    for d in input_list:
+        print(d)
+        p = text_tokenize(d)                      # 调包分词
+        participle.append(p)                      # 放到那个list里面
+    return participle
 
-# 把首行去掉
-poet_data = poet_data[1:]
-participle = []
-i = 1
-for d in poet_data:
-    d = title_data[i] + d                     # 和诗的标题加在一起
-    d = re.sub(u"（.*?）", "", d)             # 去掉括号内容
-    d = re.sub(u"<.*?>", "", d)               # 去掉< emm >
-    p = text_tokenize(d)                      # 调包分词
-    print(str(i) + " " + p)
-    participle.append(p)                      # 放到那个list里面
-    i = i+1
 
-# 下面就是把这列表写到excel里面
-book = xlwt.Workbook(encoding="utf-8", style_compression=0)
-sheet = book.add_sheet('jiayan', cell_overwrite_ok=True)
-count = 0
-for data in participle:
-    sheet.write(count, 0, count)
-    sheet.write(count, 1, data)
-    count = count+1
 
-book.save("全唐诗jiayan.xls")
+# # 打开全唐诗的excel表格
+# workbook = xlrd.open_workbook("../input/全唐诗数据库0805.xlsx")
+# sheet = workbook.sheet_by_index(0)
+# title_data = sheet.col_values(2)
+# poet_data = sheet.col_values(4)
+# # print_list(poet_data)
+#
+# # 把首行去掉
+# poet_data = poet_data[1:]
+# participle = []
+# i = 1
+# for d in poet_data:
+#     d = title_data[i] + d                     # 和诗的标题加在一起
+#     d = re.sub(u"（.*?）", "", d)             # 去掉括号内容
+#     d = re.sub(u"<.*?>", "", d)               # 去掉< emm >
+#     p = text_tokenize(d)                      # 调包分词
+#     print(str(i) + " " + p)
+#     participle.append(p)                      # 放到那个list里面
+#     i = i+1
+#
+# # 下面就是把这列表写到excel里面
+# book = xlwt.Workbook(encoding="utf-8", style_compression=0)
+# sheet = book.add_sheet('jiayan', cell_overwrite_ok=True)
+# count = 0
+# for data in participle:
+#     sheet.write(count, 0, count)
+#     sheet.write(count, 1, data)
+#     count = count+1
+#
+# book.save("全唐诗jiayan.xls")

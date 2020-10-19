@@ -9,7 +9,7 @@ import os
 from jiayan import WordNgramTokenizer
 import kenlm
 import jieba
-
+import pkuseg
 
 """
 利用jiayan包进行唐诗分词
@@ -27,33 +27,6 @@ import jieba
 #             "此行非不济，良友昔相于。去旆依颜色，沿流想疾徐。沈绵疲井臼，倚薄似樵渔。" \
 #             "乞米烦佳客，钞诗听小胥。杜陵斜晚照，潏水带寒淤。莫话清溪发，萧萧白映梳。 "
 # text = '是故内圣外王之道，暗而不明，郁而不发，天下之人各为其所欲焉以自为方。'
-
-
-def print_list(list_data):
-    for dd in list_data:
-        print(dd)
-
-
-def text_tokenize(text_data):
-    lm = load_lm('../jiayan.klm')
-    tokenizer = CharHMMTokenizer(lm)
-    result = ''
-    t_list = list(tokenizer.tokenize(text_data))
-    for t in t_list:
-        result = result + t + " "
-    result = result[:-1]
-    return result
-
-
-def jiayan_tokenize(input_list):
-    participle = []
-    for d in input_list:
-        print(d)
-        p = text_tokenize(d)                      # 调包分词
-        participle.append(p)                      # 放到那个list里面
-    return participle
-
-
 
 # # 打开全唐诗的excel表格
 # workbook = xlrd.open_workbook("../input/全唐诗数据库0805.xlsx")
@@ -85,3 +58,48 @@ def jiayan_tokenize(input_list):
 #     count = count+1
 #
 # book.save("全唐诗jiayan.xls")
+
+def print_list(list_data):
+    for dd in list_data:
+        print(dd)
+
+
+def text_tokenize(text_data):
+    lm = load_lm('../jiayan.klm')
+    tokenizer = CharHMMTokenizer(lm)
+    result = ''
+    t_list = list(tokenizer.tokenize(text_data))
+    for t in t_list:
+        result = result + t + " "
+    result = result[:-1]
+    return result
+
+
+def jiayan_tokenize(input_list):
+    participle = []
+    for d in input_list:
+        # print(d)
+        p = text_tokenize(d)                      # 调包分词
+        participle.append(p)                      # 放到那个list里面
+    return participle
+
+
+def jieba_tokenize(input_list):
+    # jieba.enable_paddle()
+    jieba.load_userdict("../input/Tang_poet_dict.txt")
+    participle = []
+    for d in input_list:
+        # print(d)
+        p = jieba.cut(d)
+        participle.append(' '.join(list(p)))
+    return participle
+
+
+def pkuseg_tokenize(input_list):
+    seg = pkuseg.pkuseg()
+    participle = []
+    for d in input_list:
+        p = seg.cut(d)
+        # print(p)
+        participle.append(" ".join(p))
+    return participle

@@ -35,7 +35,7 @@ def get_test_list():
 
 def list_participle(output_list):
     correct_list = []
-    for i in poet_list:
+    for i in output_list:
         ii = i.replace("。", ' ')
         ii = ii.replace("，", ' ')
         i_split = ii.split(' ')

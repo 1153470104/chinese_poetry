@@ -19,7 +19,8 @@ def group_contains(poem_txt, w_list):
     return False
 
 
-qj_list = ['曲江', '曲池', '芙蓉池', '芙蓉园', '芙蓉苑', '杏园', '紫云楼', '慈恩寺', '宜春苑', '宜春园']
+# qj_list = ['曲江', '曲池', '芙蓉池', '芙蓉园', '芙蓉苑', '杏园', '紫云楼', '慈恩寺', '宜春苑', '宜春园']
+qj_list = ['乐游原', '乐游园']
 i = 0
 j = 0
 while True:
@@ -41,4 +42,4 @@ while True:
     else:
         continue
 
-w_book.save("../input/qujiang_02.xls")
+w_book.save("../input/leyouyuan_01.xls")

@@ -5,8 +5,6 @@ from participle import jieba_tokenize
 from participle import pkuseg_tokenize
 from co_occur import print_list
 
-
-# correctness(jiayan_tokenize(get_test_list()))
+correctness(jiayan_tokenize(get_test_list()))
 correctness(jieba_tokenize(get_test_list()))
-
-# correctness(pkuseg_tokenize(get_test_list()))
+correctness(pkuseg_tokenize(get_test_list()))

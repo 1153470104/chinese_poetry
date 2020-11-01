@@ -28,10 +28,10 @@ def print_matrix(matrix):
         print()
 
 
-def table_to_dict(table_name):
+def table_to_dict(table_name, number):
     # 打开excel表格
     workbook = xlrd.open_workbook(table_name)
-    r_sheet = workbook.sheet_by_index(0)
+    r_sheet = workbook.sheet_by_index(number)
     du_dict = {}
 
     i = 0
@@ -49,8 +49,32 @@ def table_to_dict(table_name):
     return du_dict
 
 
+def table_to_list(table_name, number):
+    # 打开excel表格
+    workbook = xlrd.open_workbook(table_name)
+    r_sheet = workbook.sheet_by_index(number)
+    du_list = []
+
+    i = 0
+    while True:
+        content = []
+        try:
+            line = r_sheet.row_values(i)
+            for k in range(len(line)):
+                if line[k] != '':
+                    content.append(line[k])
+            du_list.append(content)
+            i = i + 1
+        except IndexError:
+            break
+        else:
+            continue
+
+    return du_list
+
+
 def deduplicate_excel(data_name, output_name):
-    du_dict = table_to_dict("地词合并表单.xlsx")
+    du_dict = table_to_dict("地词合并表单.xlsx", 0)
     workbook = xlrd.open_workbook(data_name)
     r_sheet = workbook.sheet_by_index(0)
 
@@ -72,4 +96,4 @@ def deduplicate_excel(data_name, output_name):
     book.save(output_name)
 
 
-deduplicate_excel("908deduplicate.xls", "908deduplicate.xls")
+# deduplicate_excel("908deduplicate.xls", "908deduplicate.xls")

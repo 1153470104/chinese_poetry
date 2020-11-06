@@ -35,8 +35,13 @@ def print_matrix(matrix):
 
 
 # 打开excel表格
-workbook = xlrd.open_workbook("../input/908deduplicate.xls")
+# workbook = xlrd.open_workbook("../input/908deduplicate.xls")
+# workbook = xlrd.open_workbook("../input/qujiang_label.xls")
+workbook = xlrd.open_workbook("../input/曲江deduplicate.xls")
 r_sheet = workbook.sheet_by_index(0)
+
+
+"""function below is used to get list & get dict & get top"""
 
 
 def get_txt_top(path, count):
@@ -141,6 +146,16 @@ def file_to_dict(path):
     f.close()
     print_dict(f_dict)
     return f_dict
+
+
+"""next functions is the encapsulation of function above"""
+
+
+def dict_file(type_txt, path):
+    dict_to_file(get_dict(type_txt), path)
+
+
+""" function below is use to manufacture & manipulate  matrix"""
 
 
 def list_co_matrix(r_list, c_list, matrix):
@@ -338,6 +353,22 @@ def csv_export_co_matrix(r_list, c_list, csv_name):
         csv_writer.writerow(count_list)
         print(str(y))
     data_csv.close()
+
+
+"""next function is used to encapsulate the co-occur progress"""
+
+
+def co_occur_whole(type1, type2, excel_name):
+    r_list = get_list(type1)
+    c_list = get_list(type2)
+    excel_export_co_matrix(r_list, c_list, excel_name)
+
+
+def co_occur_some(type1, type2, num1, num2, excel_name):
+    r_list = get_list_top(type1, num1)
+    c_list = get_list_top(type2, num2)
+    excel_export_co_matrix(r_list, c_list, excel_name)
+
 
 # # test1: test print matrix & init matrix
 # print_matrix(co_matrix([9, 0], [9, 8, 3]))

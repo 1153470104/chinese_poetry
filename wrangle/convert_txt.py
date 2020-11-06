@@ -24,8 +24,8 @@ while True:
         f.write(p_data[1] + " ")
         f.write(p_data[2] + " ")
         f.write(p_data[3] + " ")
-        print(type(p_data[4]))
-        f.write(p_data[4])
+        # print(p_data)
+        f.write(p_data[4] + " ")
         f.close()
     except IndexError:
         print("get to the end")

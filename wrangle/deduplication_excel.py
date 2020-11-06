@@ -74,7 +74,7 @@ def table_to_list(table_name, number):
 
 
 def deduplicate_excel(data_name, output_name):
-    du_dict = table_to_dict("地词合并表单.xlsx", 0)
+    du_dict = table_to_dict("../input/地词合并表单.xlsx", 0)
     workbook = xlrd.open_workbook(data_name)
     r_sheet = workbook.sheet_by_index(0)
 
@@ -97,3 +97,4 @@ def deduplicate_excel(data_name, output_name):
 
 
 # deduplicate_excel("908deduplicate.xls", "908deduplicate.xls")
+deduplicate_excel("../input/qujiang_label.xls", "../input/曲江deduplicate.xls")

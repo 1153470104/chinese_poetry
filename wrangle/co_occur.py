@@ -39,6 +39,8 @@ def print_matrix(matrix):
 # workbook = xlrd.open_workbook("../input/qujiang_label.xls")
 workbook = xlrd.open_workbook("../input/曲江deduplicate.xls")
 r_sheet = workbook.sheet_by_index(0)
+workbook2 = xlrd.open_workbook("../input/qujiang_all.xls")
+p_sheet = workbook2.sheet_by_index(1)
 
 
 """function below is used to get list & get dict & get top"""
@@ -75,6 +77,8 @@ def get_list_top(type_txt, number):
     sort_list = sorted(word_dict.items(), key=lambda x: x[1], reverse=True)
     r_list = []
     for k in range(number):
+        # print(k)
+        # print(sort_list[k])
         result = str(sort_list[k]).replace("(", "")
         result = result.replace(")", "")
         result = result.replace("'", "")
@@ -355,6 +359,148 @@ def csv_export_co_matrix(r_list, c_list, csv_name):
     data_csv.close()
 
 
+def excel_export_type_co_matrix(r_list, c_list, excel_name, col_num, type_txt):
+    """
+    根据两个数列中的关键词计算共现矩阵
+    根据输入的列属性值和行属性值，以及excel表格中的数据
+    export an excel table of the matrix
+    :param type_txt: 要选择的特定类别
+    :param col_num: 要选择的判定标准的列所在
+    :param excel_name: 要保存的矩阵名字
+    :param r_list: r_list: row list, as one of the input list
+    :param c_list: column list as one of the input list
+    :return: 返回由上两个列表所计算出的共现矩阵
+    """
+    r = len(r_list)
+    c = len(c_list)
+    print("The size of matrix: " + str(r) + ", " + str(c))
+
+    # new an excel file for the matrix content
+    w_book = xlwt.Workbook(encoding='utf-8')
+    w_sheet = w_book.add_sheet('matrix')
+    ii = 0
+    for c_word in c_list:
+        ii = ii + 1
+        w_sheet.write(0, ii, c_word)
+    jj = 0
+    for r_word in r_list:
+        jj = jj + 1
+        w_sheet.write(jj, 0, r_word)
+
+    # 遍历每一个矩阵的单位，计算该单位对应两个word的共现次数
+    for y in range(r):
+        r_word = r_list[y]
+        for x in range(c):
+            c_word = c_list[x]
+            co_occur_time = 0
+
+            # 循环统计两个word的共现次数
+            i = 0
+            poet_number = 0
+            count = [0, 0]
+            while True:
+                try:
+                    i = i + 1
+                    if poet_number != r_sheet.cell_value(i, 0):
+                        poet_number = r_sheet.cell_value(i, 0)
+                        if count[0] == count[1] and count[1] == 1:
+                            co_occur_time = co_occur_time + 1
+                        count = [0, 0]
+                    # print(p_sheet.cell_value(int(poet_number), col_num))
+                    if p_sheet.cell_value(int(poet_number), col_num) != type_txt:
+                        continue
+                    if r_sheet.cell_value(i, 4) == c_word:
+                        count[0] = 1
+                    elif r_sheet.cell_value(i, 4) == r_word:
+                        count[1] = 1
+                except IndexError:  # 用错误处理机制进行退出
+                    # 避免因为到末尾导致最后一首诗的共现次数没有算入
+                    # 在except中也检查一遍count，避免遗漏
+                    if count[0] == count[1] and count[1] == 1:
+                        co_occur_time = co_occur_time + 1
+                    # print(str(y) + "get to the end")
+                    break
+                else:
+                    continue
+            w_sheet.write(y+1, x+1, co_occur_time)
+        print(str(y))
+    w_book.save(excel_name)
+
+
+def excel_export_xushi(r_list, c_list, excel_name, xushi, type_or_not, col_num, type_txt):
+    """
+    根据两个数列中的关键词计算共现矩阵
+    根据输入的列属性值和行属性值，以及excel表格中的数据
+    export an excel table of the matrix
+    :param type_txt: 要选择的特定类别
+    :param col_num: 要选择的判定标准的列所在
+    :param excel_name: 要保存的矩阵名字
+    :param r_list: r_list: row list, as one of the input list
+    :param c_list: column list as one of the input list
+    :return: 返回由上两个列表所计算出的共现矩阵
+    """
+    r = len(r_list)
+    c = len(c_list)
+    print("The size of matrix: " + str(r) + ", " + str(c))
+
+    # new an excel file for the matrix content
+    w_book = xlwt.Workbook(encoding='utf-8')
+    w_sheet = w_book.add_sheet('matrix')
+    ii = 0
+    for c_word in c_list:
+        ii = ii + 1
+        w_sheet.write(0, ii, c_word)
+    jj = 0
+    for r_word in r_list:
+        jj = jj + 1
+        w_sheet.write(jj, 0, r_word)
+
+    # 遍历每一个矩阵的单位，计算该单位对应两个word的共现次数
+    for y in range(r):
+        r_word = r_list[y]
+        for x in range(c):
+            c_word = c_list[x]
+            co_occur_time = 0
+
+            # 循环统计两个word的共现次数
+            i = 0
+            poet_number = 0
+            count = [0, 0]
+            while True:
+                try:
+                    i = i + 1
+                    if poet_number != r_sheet.cell_value(i, 0):
+                        poet_number = r_sheet.cell_value(i, 0)
+                        if count[0] == count[1] and count[1] == 1:
+                            co_occur_time = co_occur_time + 1
+                        count = [0, 0]
+                    # print(p_sheet.cell_value(int(poet_number), col_num))
+                    # print(type_or_not)
+                    if type_or_not:
+                        if p_sheet.cell_value(int(poet_number), xushi) == "" or \
+                                p_sheet.cell_value(int(poet_number), col_num) != type_txt:
+                            continue
+                    else:
+                        if p_sheet.cell_value(int(poet_number), xushi) == "":
+                            continue
+                    if r_sheet.cell_value(i, 4) == c_word:
+                        count[0] = 1
+                    elif r_sheet.cell_value(i, 4) == r_word:
+                        count[1] = 1
+                except IndexError:  # 用错误处理机制进行退出
+                    # 避免因为到末尾导致最后一首诗的共现次数没有算入
+                    # 在except中也检查一遍count，避免遗漏
+                    if count[0] == count[1] and count[1] == 1:
+                        co_occur_time = co_occur_time + 1
+                    # print(str(y) + "get to the end")
+                    break
+                else:
+                    continue
+            w_sheet.write(y+1, x+1, co_occur_time)
+        print(str(y))
+    w_book.save(excel_name)
+
+
 """next function is used to encapsulate the co-occur progress"""
 
 
@@ -362,6 +508,18 @@ def co_occur_whole(type1, type2, excel_name):
     r_list = get_list(type1)
     c_list = get_list(type2)
     excel_export_co_matrix(r_list, c_list, excel_name)
+
+
+def co_occur_type_some(type1, type2, num1, num2, excel_name, col_num, type_txt):
+    r_list = get_list_top(type1, num1)
+    c_list = get_list_top(type2, num2)
+    excel_export_type_co_matrix(r_list, c_list, excel_name, col_num, type_txt)
+
+
+def co_occur_type_xushi(type1, type2, num1, num2, excel_name, xushi, type_or_not, col_num, type_txt):
+    r_list = get_list_top(type1, num1)
+    c_list = get_list_top(type2, num2)
+    excel_export_xushi(r_list, c_list, excel_name, xushi, type_or_not, col_num, type_txt)
 
 
 def co_occur_some(type1, type2, num1, num2, excel_name):

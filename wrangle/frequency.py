@@ -176,10 +176,12 @@ def combine_set(set_list):
                 result_set.add(n)
         raw_set = result_set.copy()
         result_set = set()
-    return result_set
+    return raw_set
 
 
-def get_fre(*args, path):
+def get_fre(*args):
+    path = args[-1]
+    args = args[:-1]
     if len(args) == 0:
         txt = get_all()
     else:

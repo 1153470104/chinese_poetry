@@ -1,3 +1,6 @@
+"""
+共现+补词共现
+"""
 from co_occur import get_txt_top
 from co_occur import excel_export_co_matrix
 from txt_wrangle import file_to_dict

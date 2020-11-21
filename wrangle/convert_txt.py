@@ -1,9 +1,9 @@
+"""
+把excel转成txt 并存成 nvivo 里面可以用的编码格式
+"""
+
 # -*- coding: utf-8 -*-
 import xlrd
-
-"""
-把某个excel文档处理成特定模式的程序
-"""
 
 
 def print_list(list_data):
@@ -11,22 +11,24 @@ def print_list(list_data):
         print(d)
 
 
-workbook = xlrd.open_workbook("../input/标注1102.xls", encoding_override='utf-8')
-sheet = workbook.sheet_by_index(0)
+workbook = xlrd.open_workbook("../input/1120qujiang_festival.xls", encoding_override='utf-8')
+sheet = workbook.sheet_by_index(2)
 # poet_data = sheet.col_values(1)
 i = 0
 while True:
     try:
-        i = i + 1
         p_data = sheet.row_values(i)
-        f = open("../output/qujiangConvert/" + str(i) + ".txt", 'a', encoding='gb18030')
-        f.write(str(i) + " ")
+        f = open("../output/qujiang1120convert/" + str(i+1) + ".txt", 'a', encoding='gb18030')
+        f.write(str(i+1) + " ")
         f.write(p_data[1] + " ")
         f.write(p_data[2] + " ")
         f.write(p_data[3] + " ")
         # print(p_data)
         f.write(p_data[4] + " ")
+        f.write(p_data[5] + " ")
+        f.write(p_data[6])
         f.close()
+        i = i + 1
     except IndexError:
         print("get to the end")
         break

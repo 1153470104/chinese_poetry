@@ -1,21 +1,26 @@
+"""
+分词预处理 / 分词几个指标的计算
+"""
+
 import xlrd
 import re
 from co_occur import print_list
 
 
 def make_material():
-    workbook = xlrd.open_workbook("../input/545raw.xlsx")
-    sheet = workbook.sheet_by_index(0)
-    poet_data = sheet.col_values(9)[1:]
+    workbook = xlrd.open_workbook("../input/qj分词汇总.xls")
+    sheet = workbook.sheet_by_index(1)
+    poet_data = sheet.col_values(19)[1:]
     # print_list(poet_data)
 
-    wf = open("../input/participle_test.txt", 'w', encoding='utf-8')
+    wf = open("../input/qujiang_test.txt", 'w', encoding='utf-8')
     for l in poet_data:
         wf.write(l + '\n')
     wf.close()
 
 
-f = open("../input/participle_test.txt", 'r', encoding='utf-8')
+make_material()
+f = open("../input/qujiang_test.txt", 'r', encoding='utf-8')
 poet_list = []
 line = f.readline()
 while line:

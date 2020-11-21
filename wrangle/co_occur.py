@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-import xlrd
-import xlwt
-import csv
-import codecs
-
 """
 本程序主要用于计算共现矩阵
 
@@ -12,6 +6,12 @@ import codecs
 共现计算函数：co_matrix()
 结果处理函数：dict_to_file() list_co_matrix() excel_export_co_matrix()
 """
+
+# -*- coding: utf-8 -*-
+import xlrd
+import xlwt
+import csv
+import codecs
 
 
 # 打印数列

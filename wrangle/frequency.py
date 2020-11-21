@@ -1,3 +1,8 @@
+"""
+用于统计词频
+函数：根据需要的类型选择文本 / 统计频率， 以及一些辅助函数
+"""
+
 import xlrd
 
 
@@ -46,7 +51,7 @@ def get_list_txt(col_num, type_txt, xushi_or_not, xushi_num, only_xushi):
         while True:
             try:
                 i = i + 1
-                if dtm_col[i] == type_txt:
+                if type_txt in dtm_col[i]:
                     row_list.append(i)
             except IndexError:
                 print("get to the end")
@@ -60,7 +65,7 @@ def get_list_txt(col_num, type_txt, xushi_or_not, xushi_num, only_xushi):
         while True:
             try:
                 i = i + 1
-                if xushi_col[i] != "" and dtm_col[i] == type_txt:
+                if xushi_col[i] != "" and type_txt in dtm_col[i]:
                     row_list.append(i)
             except IndexError:
                 print("get to the end")
@@ -119,3 +124,28 @@ def get_frequency(col_num, type_txt, xushi_or_not, xushi_num, only_xushi, path):
     dict_to_file(
         frequency(
             get_list_txt(col_num, type_txt, xushi_or_not, xushi_num, only_xushi)), path)
+
+
+def combine_fre(path1, path2, path3):
+    f1 = open(path1, 'r', encoding='utf-8')
+    f2 = open(path2, 'r', encoding='utf-8')
+    w_dict = {}
+    line1 = f1.readline()
+    while line1:
+        line1 = line1.replace("\n", "")
+        fre = line1.split(" ")
+        w_dict[fre[0]] = int(fre[1])
+        line1 = f1.readline()
+    line2 = f2.readline()
+    while line2:
+        line2 = line2.replace("\n", "")
+        fre = line2.split(" ")
+        if fre[0] not in w_dict.keys():
+            w_dict[fre[0]] = int(fre[1])
+        else:
+            w_dict[fre[0]] = w_dict[fre[0]] + int(fre[1])
+        line2 = f2.readline()
+
+    f1.close()
+    f2.close()
+    dict_to_file(w_dict, path3)

@@ -1,3 +1,7 @@
+"""
+对全唐诗的诗歌进行处理
+"""
+
 # -*- coding: utf-8 -*-
 import xlrd
 import xlwt

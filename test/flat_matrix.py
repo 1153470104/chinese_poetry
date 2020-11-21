@@ -1,4 +1,9 @@
+"""
+拍平共现数据给pajek的脚本
+"""
+
 from matrix_excel_wrangle import matrix_flat
+
 
 # # matrix_flat("../output/包含物象的/newtf地点地点100.xls", "../output/包含物象的/newtf地点地点100flat.xls")
 # matrix_flat("../output/包含物象的/newtf地点物象100.xls", "../output/包含物象的/newtf地点物象100flat.xls")

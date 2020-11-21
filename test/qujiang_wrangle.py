@@ -1,3 +1,7 @@
+"""
+分类别共现的脚本
+有个方法：清洗数据
+"""
 # -*- coding: utf-8 -*-
 import xlrd
 import xlwt

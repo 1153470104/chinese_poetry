@@ -1,7 +1,13 @@
+"""
+统计数量的一个脚本
+内有方法：统计时间 / 统计地点+时间 / 地点+时间+类型 的一些方法
+"""
+
 # -*- coding: utf-8 -*-
 import xlrd
 import xlwt
 from co_occur import print_list
+
 
 workbook = xlrd.open_workbook("../input/qujiang_重tag_合并版1.0.xls")
 r_sheet = workbook.sheet_by_index(1)

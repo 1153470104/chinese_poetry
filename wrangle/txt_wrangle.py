@@ -1,10 +1,10 @@
+"""
+字典排序 / 读取文件到字典 / 字典写到文件 / 列表到文件 / tf-tdf相关
+"""
+
 from math import log
 from co_occur import print_list
 from co_occur import print_dict
-
-"""
-处理纯文本文件的一些函数
-"""
 
 
 def dict_sort_list(w_dict):

@@ -1,3 +1,8 @@
+"""
+处理前缀分析问题的方法
+函数：数据预处理 / 找地点 / 找前缀后缀 / ...
+"""
+
 import xlrd
 import re
 from co_occur import print_list

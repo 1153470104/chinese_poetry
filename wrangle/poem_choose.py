@@ -1,3 +1,7 @@
+"""
+根据词选诗的脚本
+"""
+
 # -*- coding: utf-8 -*-
 import xlrd
 import xlwt

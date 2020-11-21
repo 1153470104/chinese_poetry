@@ -1,3 +1,6 @@
+"""
+全共现的脚本，带计算覆盖率
+"""
 # -*- coding: utf-8 -*-
 from wrangle.co_occur import csv_export_co_matrix
 from wrangle.co_occur import get_list

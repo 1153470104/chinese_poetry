@@ -1,11 +1,10 @@
+"""
+本程序用于excel表格内容的去空格
+"""
 # -*- coding: utf-8 -*-
 import xlrd
 import xlwt
 from xlutils.copy import copy
-
-"""
-本程序用于excel表格内容的去空格
-"""
 
 
 # 打印数列

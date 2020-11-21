@@ -1,12 +1,11 @@
+"""
+提取 excel 文件的不同列，分别统计存储到新文件的不同表的函数
+"""
+
 # -*- coding: utf-8 -*-
 import xlrd
 import xlwt
 from xlutils.copy import copy
-
-
-"""
-提取 excel 文件的不同列，分别统计存储到新文件的不同表的函数
-"""
 
 
 # 打印数列

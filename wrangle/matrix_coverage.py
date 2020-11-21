@@ -1,9 +1,10 @@
-import matplotlib.pyplot as plt
-from wrangle import co_occur, matrix_excel_wrangle
-
 """
 计算共现矩阵覆盖率的程序
+函数：计算覆盖率 / 绘制表格
 """
+
+import matplotlib.pyplot as plt
+from wrangle import co_occur, matrix_excel_wrangle
 
 
 # get the list of top words

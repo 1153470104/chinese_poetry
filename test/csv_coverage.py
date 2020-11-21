@@ -1,3 +1,7 @@
+"""
+计算覆盖率，画分析图的脚本
+"""
+
 from wrangle.co_occur import get_list
 from wrangle.co_occur import print_matrix
 from wrangle.matrix_excel_wrangle import sort_csv_matrix

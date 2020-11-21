@@ -1,10 +1,10 @@
+"""
+处理分词结果的一些函数，用在自定义的tf-idf中的一些辅助函数
+"""
+
 import re
 import xlrd
 from co_occur import print_list
-
-"""
-处理分词结果的一些函数
-"""
 
 
 # 打开excel表格

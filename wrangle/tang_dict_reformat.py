@@ -1,4 +1,9 @@
+"""
+一个检测、打印的脚本
+"""
+
 from co_occur import print_list
+
 # f = open("../input/Tang_word.txt", 'r', encoding='utf-8')
 # wf = open("../input/Tang_vocabulary.txt", 'w', encoding='utf-8')
 # line = f.readline()

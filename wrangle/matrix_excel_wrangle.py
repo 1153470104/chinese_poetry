@@ -1,3 +1,8 @@
+"""
+处理共现matrix的一些函数
+函数：得到列 / 从excel中取表格 / 从csv中取表格 / 各类排序函数 / 拍平函数
+"""
+
 # -*- coding: utf-8 -*-
 import xlrd
 import xlwt
@@ -6,10 +11,6 @@ import codecs
 from wrangle.co_occur import print_list
 from wrangle.co_occur import print_dict
 from wrangle.co_occur import print_matrix
-
-"""
-处理共现matrix的一些函数
-"""
 
 
 def get_column_list(matrix_name):

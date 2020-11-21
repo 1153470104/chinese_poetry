@@ -1,6 +1,7 @@
 """
 divide the whole tang poetry set into 500-poetry (or other scale) sets
 use those sets as different text material to calculate TF-IDF number
+计算TF-IDF的脚本
 """
 
 import txt_wrangle

@@ -62,9 +62,9 @@ from frequency import combine_fre
 # get_frequency(15, "宜春", False, 15, False, "../output/qj_frequency/虚写宜春苑.txt")
 
 
-combine_fre("../output/qj_frequency/实写慈恩寺.txt", "../output/qj_frequency/虚写慈恩寺.txt", "../output/qj_frequency/慈恩寺.txt")
-combine_fre("../output/qj_frequency/实写曲江.txt", "../output/qj_frequency/虚写曲江.txt", "../output/qj_frequency/曲江.txt")
-combine_fre("../output/qj_frequency/实写芙蓉苑.txt", "../output/qj_frequency/虚写芙蓉苑.txt", "../output/qj_frequency/芙蓉苑.txt")
-combine_fre("../output/qj_frequency/实写杏园.txt", "../output/qj_frequency/虚写杏园.txt", "../output/qj_frequency/杏园.txt")
-combine_fre("../output/qj_frequency/实写乐游原.txt", "../output/qj_frequency/虚写乐游原.txt", "../output/qj_frequency/乐游原.txt")
-combine_fre("../output/qj_frequency/实写宜春苑.txt", "../output/qj_frequency/虚写宜春苑.txt", "../output/qj_frequency/宜春苑.txt")
+# combine_fre("../output/qj_frequency/实写慈恩寺.txt", "../output/qj_frequency/虚写慈恩寺.txt", "../output/qj_frequency/慈恩寺.txt")
+# combine_fre("../output/qj_frequency/实写曲江.txt", "../output/qj_frequency/虚写曲江.txt", "../output/qj_frequency/曲江.txt")
+# combine_fre("../output/qj_frequency/实写芙蓉苑.txt", "../output/qj_frequency/虚写芙蓉苑.txt", "../output/qj_frequency/芙蓉苑.txt")
+# combine_fre("../output/qj_frequency/实写杏园.txt", "../output/qj_frequency/虚写杏园.txt", "../output/qj_frequency/杏园.txt")
+# combine_fre("../output/qj_frequency/实写乐游原.txt", "../output/qj_frequency/虚写乐游原.txt", "../output/qj_frequency/乐游原.txt")
+# combine_fre("../output/qj_frequency/实写宜春苑.txt", "../output/qj_frequency/虚写宜春苑.txt", "../output/qj_frequency/宜春苑.txt")

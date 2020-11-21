@@ -26,54 +26,59 @@ def get_all():
     return txt
 
 
-def get_list_txt(col_num, type_txt, xushi_or_not, xushi_num, only_xushi):
-    row_list = []
-    if only_xushi:
-        dtm_col = r_sheet.col_values(xushi_num)
+# def get_list_txt(col_num, type_txt, xushi_or_not, xushi_num, only_xushi):
+#     row_list = []
+#     if only_xushi:
+#         dtm_col = r_sheet.col_values(xushi_num)
+#
+#         i = 0
+#         while True:
+#             try:
+#                 i = i + 1
+#                 if dtm_col[i] != "":
+#                     row_list.append(i)
+#             except IndexError:
+#                 print("get to the end")
+#                 break
+#             else:
+#                 continue
+#         return get_type_txt(row_list)
+#
+#     if not xushi_or_not:
+#         dtm_col = r_sheet.col_values(col_num)
+#
+#         i = 0
+#         while True:
+#             try:
+#                 i = i + 1
+#                 if type_txt in dtm_col[i]:
+#                     row_list.append(i)
+#             except IndexError:
+#                 print("get to the end")
+#                 break
+#             else:
+#                 continue
+#     else:
+#         dtm_col = r_sheet.col_values(col_num)
+#         xushi_col = r_sheet.col_values(xushi_num)
+#         i = 0
+#         while True:
+#             try:
+#                 i = i + 1
+#                 if xushi_col[i] != "" and type_txt in dtm_col[i]:
+#                     row_list.append(i)
+#             except IndexError:
+#                 print("get to the end")
+#                 break
+#             else:
+#                 continue
+#
+#     return get_type_txt(row_list)
 
-        i = 0
-        while True:
-            try:
-                i = i + 1
-                if dtm_col[i] != "":
-                    row_list.append(i)
-            except IndexError:
-                print("get to the end")
-                break
-            else:
-                continue
-        return get_type_txt(row_list)
 
-    if not xushi_or_not:
-        dtm_col = r_sheet.col_values(col_num)
-
-        i = 0
-        while True:
-            try:
-                i = i + 1
-                if type_txt in dtm_col[i]:
-                    row_list.append(i)
-            except IndexError:
-                print("get to the end")
-                break
-            else:
-                continue
-    else:
-        dtm_col = r_sheet.col_values(col_num)
-        xushi_col = r_sheet.col_values(xushi_num)
-        i = 0
-        while True:
-            try:
-                i = i + 1
-                if xushi_col[i] != "" and type_txt in dtm_col[i]:
-                    row_list.append(i)
-            except IndexError:
-                print("get to the end")
-                break
-            else:
-                continue
-
-    return get_type_txt(row_list)
+"""
+method below is used to complete the whole funciton
+"""
 
 
 def get_type_txt(row_list):
@@ -120,10 +125,79 @@ def dict_to_file(w_dict, path):
     f.close()
 
 
-def get_frequency(col_num, type_txt, xushi_or_not, xushi_num, only_xushi, path):
-    dict_to_file(
-        frequency(
-            get_list_txt(col_num, type_txt, xushi_or_not, xushi_num, only_xushi)), path)
+"""
+methods below realize a robust get txt function
+"""
+
+
+def get_args(args):
+    length = len(args)
+    if length % 2 == 1:
+        print("Number of input parameter is not even")
+        exit()
+    type_dict = {}
+    for i in range(int(length / 2)):
+        type_dict[args[2*i]] = args[2*i+1]
+    return type_dict
+
+
+def get_type_number(col, content):
+    row_set = set()
+    dtm_col = r_sheet.col_values(col)
+    if content == "true":
+        i = 0
+        while True:
+            try:
+                i = i + 1
+                if dtm_col[i]:
+                    row_set.add(i)
+            except IndexError:
+                print("get to the end")
+                break
+
+    i = 0
+    while True:
+        try:
+            i = i + 1
+            if content in dtm_col[i]:
+                row_set.add(i)
+        except IndexError:
+            print("get to the end")
+            break
+    return row_set
+
+
+def combine_set(set_list):
+    raw_set = set_list[0]
+    result_set = set()
+    for s in set_list:
+        for n in s:
+            if n in raw_set:
+                result_set.add(n)
+        raw_set = result_set.copy()
+        result_set = set()
+    return result_set
+
+
+def get_fre(*args, path):
+    if len(args) == 0:
+        txt = get_all()
+    else:
+        set_list = []
+        type_dict = get_args(args)
+        row_set = set()
+        for col in type_dict.keys():
+            new_set = get_type_number(col, type_dict[col])
+            set_list.append(new_set.copy())
+            row_set = combine_set(set_list)
+        txt = get_type_txt(row_set)
+    dict_to_file(frequency(txt), path)
+
+
+# def get_frequency(col_num, type_txt, xushi_or_not, xushi_num, only_xushi, path):
+#     dict_to_file(
+#         frequency(
+#             get_list_txt(col_num, type_txt, xushi_or_not, xushi_num, only_xushi)), path)
 
 
 def combine_fre(path1, path2, path3):
@@ -149,3 +223,5 @@ def combine_fre(path1, path2, path3):
     f1.close()
     f2.close()
     dict_to_file(w_dict, path3)
+
+

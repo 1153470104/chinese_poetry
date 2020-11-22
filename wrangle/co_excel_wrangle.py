@@ -20,11 +20,12 @@ def print_dict(dict_data):
 
 
 # read file
-workbook = xlrd.open_workbook("907汇总及编码.xls")
+# workbook = xlrd.open_workbook("907汇总及编码.xls")
+workbook = xlrd.open_workbook("../input/1122Festival_Poems.xls")
 r_sheet = workbook.sheet_by_index(0)
 
 
-book = copy(workbook) # 调用xlutils 里的copy函数转换原有只读workbook为可读文件
+book = copy(workbook)  # 调用xlutils 里的copy函数转换原有只读workbook为可读文件
 w_sheet = book.get_sheet(0)
 
 # 循环读取一行行文本处理
@@ -32,9 +33,9 @@ i = 0
 while True:
     try:
         i = i + 1
-        # w_sheet.write(i, 0, r_sheet.cell_value(i, 0).replace("文件\\\\", ""))
-        # w_sheet.write(i, 1, r_sheet.cell_value(i, 1).replace("节点\\\\", ""))
-        w_sheet.write(i, 4, r_sheet.cell_value(i, 4).replace(" ", ""))
+        w_sheet.write(i, 0, r_sheet.cell_value(i, 0).replace("文件\\\\", ""))
+        w_sheet.write(i, 1, r_sheet.cell_value(i, 1).replace("节点\\\\", ""))
+        # w_sheet.write(i, 4, r_sheet.cell_value(i, 4).replace(" ", ""))
     except IndexError:  # 用错误处理机制进行退出
         print("get to the end")
         break
@@ -42,4 +43,4 @@ while True:
         continue
 
 # 把book对应的内容存到 一个新文件里
-book.save("908.xls")
+book.save("../input/1122fes.xls")

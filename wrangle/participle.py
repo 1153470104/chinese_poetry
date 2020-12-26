@@ -107,8 +107,8 @@ def pkuseg_tokenize(input_list):
     return participle
 
 
-txt = ["寒驚薊門葉，秋發小山枝。松陰背日轉，竹影避風移。提壺菊花岸，高興芙蓉池。欲知涼氣早，巢空燕不窺。"]
-# print(text_tokenize(txt))
-print(jiayan_tokenize(txt))
-print(jieba_tokenize(txt))
+# txt = ["寒驚薊門葉，秋發小山枝。松陰背日轉，竹影避風移。提壺菊花岸，高興芙蓉池。欲知涼氣早，巢空燕不窺。"]
+# # print(text_tokenize(txt))
+# print(jiayan_tokenize(txt))
+# print(jieba_tokenize(txt))
 

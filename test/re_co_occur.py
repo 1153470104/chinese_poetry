@@ -14,14 +14,16 @@ time_list = get_list("时词")
 nomapping_loc_list = get_list("no mapping 地点")
 mapping_loc_list = get_list("mapping 地点")
 poeple_list = get_list("人词")
-motion_list = get_list_top("动词", 100)
-stuff_list = get_list_top("物词", 100)
+activity_list = get_list("活动")
+motion_list = get_list("动词")
+stuff_list = get_list("物词")
 
-excel_export_co_matrix(festival_list, nomapping_loc_list, "../output/co_festival/节庆nomapping.xls")
-excel_export_co_matrix(festival_list, mapping_loc_list, "../output/co_festival/节庆mapping.xls")
-excel_export_co_matrix(festival_list, time_list, "../output/co_festival/节庆时间.xls")
-excel_export_co_matrix(festival_list, stuff_list, "../output/co_festival/节庆物象.xls")
-excel_export_co_matrix(festival_list, motion_list, "../output/co_festival/节庆动作.xls")
+excel_export_co_matrix(festival_list, activity_list, "../output/co_fes_period/晚唐节庆活动.xls")
+excel_export_co_matrix(festival_list, nomapping_loc_list, "../output/co_fes_period/晚唐节庆nomapping.xls")
+excel_export_co_matrix(festival_list, mapping_loc_list, "../output/co_fes_period/晚唐节庆mapping.xls")
+excel_export_co_matrix(festival_list, time_list, "../output/co_fes_period/晚唐节庆时间.xls")
+excel_export_co_matrix(festival_list, stuff_list, "../output/co_fes_period/晚唐节庆物象.xls")
+excel_export_co_matrix(festival_list, motion_list, "../output/co_fes_period/晚唐节庆动作.xls")
 
 # location_add = ['长安', '五陵', '新丰', '春宫', '咸阳']
 # people_add = ['佳人', '天子', '王孙', '明主', '神仙']

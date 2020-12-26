@@ -78,7 +78,8 @@ def list_to_file(t_list, path):
     """
     f = open(path, 'w', encoding='utf-8')
     for i in t_list:
-        f.write(i[0] + "," + str(i[1]) + "\n")
+        # f.write(i[0] + "," + str(i[1]) + "\n")
+        f.write(i + "\n")
     f.close()
 
 

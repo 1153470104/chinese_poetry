@@ -19,8 +19,8 @@ def make_material():
     wf.close()
 
 
-make_material()
-f = open("../input/qujiang_test.txt", 'r', encoding='utf-8')
+# make_material()
+f = open("../input/边塞诗.txt", 'r', encoding='utf-8')
 poet_list = []
 line = f.readline()
 while line:

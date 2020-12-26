@@ -38,8 +38,10 @@ def print_matrix(matrix):
 # workbook = xlrd.open_workbook("../input/908deduplicate.xls")
 # workbook = xlrd.open_workbook("../input/qujiang_label.xls")
 # workbook = xlrd.open_workbook("../input/曲江deduplicate.xls")
-workbook = xlrd.open_workbook("../input/1122fes_loc_fes.xls")
-r_sheet = workbook.sheet_by_index(0)
+# workbook = xlrd.open_workbook("../input/1122fes_loc_fes.xls")
+# workbook = xlrd.open_workbook("../input/1124period.xls")
+workbook = xlrd.open_workbook("../input/1124act_period.xls")
+r_sheet = workbook.sheet_by_index(3)
 # workbook2 = xlrd.open_workbook("../input/qujiang_all.xls")
 # p_sheet = workbook2.sheet_by_index(1)
 

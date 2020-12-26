@@ -11,22 +11,25 @@ def print_list(list_data):
         print(d)
 
 
-workbook = xlrd.open_workbook("../input/1120qujiang_festival.xls", encoding_override='utf-8')
-sheet = workbook.sheet_by_index(2)
+workbook = xlrd.open_workbook("../input/边塞诗1200首20201208gjx.xlsx", encoding_override='utf-8')
+sheet = workbook.sheet_by_index(0)
 # poet_data = sheet.col_values(1)
-i = 0
+i = 1
 while True:
     try:
         p_data = sheet.row_values(i)
-        f = open("../output/qujiang1120convert/" + str(i+1) + ".txt", 'a', encoding='gb18030')
-        f.write(str(i+1) + " ")
-        f.write(p_data[1] + " ")
-        f.write(p_data[2] + " ")
-        f.write(p_data[3] + " ")
+        f = open("../output/边塞诗1200/" + str(i) + ".txt", 'a', encoding='gb18030')
+        # f.write(str(i+1) + " ")
+        f.write(str(p_data[0]) + " ")
+        # f.write(p_data[1] + " ")
+        # f.write(p_data[2] + " ")
+        f.write(str(p_data[3]) + " ")
         # print(p_data)
-        f.write(p_data[4] + " ")
+        # f.write(p_data[4] + " ")
         f.write(p_data[5] + " ")
-        f.write(p_data[6])
+        f.write(p_data[6] + " ")
+        f.write(p_data[7] + " ")
+        f.write(p_data[8])
         f.close()
         i = i + 1
     except IndexError:

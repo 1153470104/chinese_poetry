@@ -74,8 +74,8 @@ def table_to_list(table_name, number):
 
 
 def deduplicate_excel(data_name, output_name):
-    # du_dict = table_to_dict("../input/地词合并表单.xlsx", 0)
-    du_dict = table_to_dict("../input/节日合并表单.xlsx", 0)
+    du_dict = table_to_dict("../input/地词合并表单.xlsx", 0)
+    # du_dict = table_to_dict("../input/节日合并表单.xlsx", 0)
     workbook = xlrd.open_workbook(data_name)
     r_sheet = workbook.sheet_by_index(0)
 
@@ -86,9 +86,11 @@ def deduplicate_excel(data_name, output_name):
     while True:
         try:
             i = i + 1
-            word = r_sheet.cell_value(i, 4)
+            word = r_sheet.cell_value(i, 4).replace(" ", "")
             if word in du_dict.keys():
                 w_sheet.write(i, 4, du_dict[word])
+            else:
+                w_sheet.write(i, 4, word)
         except IndexError:
             break
         else:
@@ -100,4 +102,4 @@ def deduplicate_excel(data_name, output_name):
 # deduplicate_excel("908deduplicate.xls", "908deduplicate.xls")
 # deduplicate_excel("../input/qujiang_label.xls", "../input/曲江deduplicate.xls")
 # deduplicate_excel("../input/1122fes.xls", "../input/1122fes_loc.xls")
-deduplicate_excel("../input/1122fes_loc.xls", "../input/1122fes_loc_fes.xls")
+deduplicate_excel("../input/1124fes_act.xls", "../input/1122fes_dedu_act.xls")
